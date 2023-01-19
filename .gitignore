@@ -477,3 +477,6 @@ $RECYCLE.BIN/
 *.lnk
 
 Debug
+
+*.db-shm
+*.db-wal

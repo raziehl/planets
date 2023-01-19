@@ -3,7 +3,7 @@ using crews_api.models;
 namespace crews_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("")]
 public class RootController : ControllerBase
 {
   private readonly ILogger<RootController> _logger;
@@ -15,7 +15,7 @@ public class RootController : ControllerBase
     db = new CrewsContext();
   }
 
-  [HttpGet()]
+  [HttpGet]
   public CrewMember? GetCrewMember()
   {
     try {
