@@ -7,12 +7,12 @@ namespace crews_api.Controllers;
 public class RootController : ControllerBase
 {
   private readonly ILogger<RootController> _logger;
-  private CrewsContext db;
+  private GeneralContext db;
 
   public RootController(ILogger<RootController> logger)
   {
     _logger = logger;
-    db = new CrewsContext();
+    db = new GeneralContext();
   }
 
   [HttpGet]

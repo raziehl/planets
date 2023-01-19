@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using crews_api.models;
 
-public class CrewsContext: DbContext {
+public class GeneralContext: DbContext {
   public DbSet<CrewMember> CrewMembers { get; set; } = default!;
   public DbSet<Crew> Crews { get; set; } = default!;
 
   public String DbPath { get; }
 
-  public CrewsContext() 
+  public GeneralContext() 
   {
     DbPath = System.IO.Path.Join("", Environment.GetEnvironmentVariable("DB_PATH"));
   }
