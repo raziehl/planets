@@ -16,7 +16,7 @@ public class RootController : ControllerBase
   }
 
   [HttpGet()]
-  public CrewMember GetCrewMember()
+  public CrewMember? GetCrewMember()
   {
     try {
       return db.CrewMembers.OrderBy(m => m.Id).FirstOrDefault();
