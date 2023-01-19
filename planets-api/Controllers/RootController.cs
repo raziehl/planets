@@ -11,6 +11,9 @@ public class RootController : ControllerBase
   public RootController(ILogger<RootController> logger)
   {
     _logger = logger;
+
+    _logger.LogInformation("ASD");
+    Console.WriteLine("\nASDDWWDA\n");
   }
 
   [HttpGet(Name = "GetWeatherForecast")]
