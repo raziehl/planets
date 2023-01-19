@@ -3,6 +3,7 @@ using crews_api.models;
 
 public class CrewsContext: DbContext {
   public DbSet<CrewMember> CrewMembers { get; set; } = default!;
+  public DbSet<Crew> Crews { get; set; } = default!;
 
   public String DbPath { get; }
 
