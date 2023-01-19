@@ -480,3 +480,4 @@ Debug
 
 *.db-shm
 *.db-wal
+*.db
