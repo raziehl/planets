@@ -2,6 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using common.models;
 namespace planets_api.Controllers;
 
+
+    // Console.WriteLine(new Planet(
+    //   1,
+    //   "Holy Terra",
+    //   "The origin point",
+    //   PlanetStatus.OK
+    // ).Image);
+
 [ApiController]
 [Route("")]
 public class RootController : ControllerBase
@@ -14,15 +22,9 @@ public class RootController : ControllerBase
   }
 
   [HttpGet()]
-  public String Get()
+  public IActionResult HealthCheck()
   {
-    Console.WriteLine(new Planet(
-      1,
-      "Holy Terra",
-      "The origin point",
-      PlanetStatus.OK
-    ).Status);
-    return "Works";
+    return Ok(new { message = "Planets API Online" });
   }
 
 }

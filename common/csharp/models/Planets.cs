@@ -38,6 +38,21 @@ public class Planet {
     SetStatus(status);
   }
 
+  public Planet(
+    int id,
+    String name,
+    String description,
+    String status,
+    String image
+  ) {
+    Id = id;
+    Name = name;
+    Description = description;
+    Image = image;
+
+    SetStatus(status);
+  }
+
 
   public void SetStatus(String value) {
     if(value == PlanetStatus.OK || value == PlanetStatus.BangOK || value == PlanetStatus.TODO || value == PlanetStatus.EnRoute) {
