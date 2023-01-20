@@ -23,20 +23,6 @@ public class Planet {
     in the database
   */
   public string? Image { get; set; }
-  
-
-  // public Planet(
-  //   int id,
-  //   String name,
-  //   String description,
-  //   String status
-  // ) {
-  //   Id = id;
-  //   Name = name;
-  //   Description = description;
-
-  //   SetStatus(status);
-  // }
 
   public Planet(
     int id,
