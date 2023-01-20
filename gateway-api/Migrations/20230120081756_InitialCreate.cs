@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace crewsapi.Migrations
+namespace gatewayapi.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

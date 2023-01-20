@@ -2,24 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace crewsapi.Migrations
+namespace gatewayapi.Migrations
 {
     [DbContext(typeof(GeneralContext))]
-    [Migration("20230119133939_InitialCreate")]
-    partial class InitialCreate
+    partial class GeneralContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
 
-            modelBuilder.Entity("crews_api.models.Crew", b =>
+            modelBuilder.Entity("common.models.Crew", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +30,7 @@ namespace crewsapi.Migrations
                     b.ToTable("Crews");
                 });
 
-            modelBuilder.Entity("crews_api.models.CrewMember", b =>
+            modelBuilder.Entity("common.models.CrewMember", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -56,14 +53,14 @@ namespace crewsapi.Migrations
                     b.ToTable("CrewMembers");
                 });
 
-            modelBuilder.Entity("crews_api.models.CrewMember", b =>
+            modelBuilder.Entity("common.models.CrewMember", b =>
                 {
-                    b.HasOne("crews_api.models.Crew", null)
+                    b.HasOne("common.models.Crew", null)
                         .WithMany("CrewMembers")
                         .HasForeignKey("CrewId");
                 });
 
-            modelBuilder.Entity("crews_api.models.Crew", b =>
+            modelBuilder.Entity("common.models.Crew", b =>
                 {
                     b.Navigation("CrewMembers");
                 });
