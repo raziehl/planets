@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using crews_api.models;
+using common.models;
 namespace crews_api.Controllers;
 
 [ApiController]

@@ -1,4 +1,4 @@
-namespace crews_api.models;
+namespace common.models;
 
 public class Crew {
   public int Id { get; set; }

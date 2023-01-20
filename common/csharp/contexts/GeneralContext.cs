@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using crews_api.models;
+using common.models;
 
 public class GeneralContext: DbContext {
   public DbSet<CrewMember> CrewMembers { get; set; } = default!;

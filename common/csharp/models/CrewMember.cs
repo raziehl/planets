@@ -1,4 +1,4 @@
-namespace crews_api.models;
+namespace common.models;
 
 public enum Rank {
   Cadet,
