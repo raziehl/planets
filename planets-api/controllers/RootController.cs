@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-
+using common.models;
 namespace planets_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("")]
 public class RootController : ControllerBase
 {
   private readonly ILogger<RootController> _logger;
@@ -16,6 +16,13 @@ public class RootController : ControllerBase
   [HttpGet()]
   public String Get()
   {
+    Console.WriteLine(new Planet(
+      1,
+      "Holy Terra",
+      "The origin point",
+      PlanetStatus.OK
+    ).Status);
     return "Works";
   }
+
 }
