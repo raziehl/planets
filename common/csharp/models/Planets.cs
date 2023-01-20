@@ -25,18 +25,18 @@ public class Planet {
   public string? Image { get; set; }
   
 
-  public Planet(
-    int id,
-    String name,
-    String description,
-    String status
-  ) {
-    Id = id;
-    Name = name;
-    Description = description;
+  // public Planet(
+  //   int id,
+  //   String name,
+  //   String description,
+  //   String status
+  // ) {
+  //   Id = id;
+  //   Name = name;
+  //   Description = description;
 
-    SetStatus(status);
-  }
+  //   SetStatus(status);
+  // }
 
   public Planet(
     int id,
@@ -55,10 +55,11 @@ public class Planet {
 
 
   public void SetStatus(String value) {
-    if(value == PlanetStatus.OK || value == PlanetStatus.BangOK || value == PlanetStatus.TODO || value == PlanetStatus.EnRoute) {
-      Status = value;
-    } else {
-      throw new ArgumentException("Wrong argument", "Wrong argument here");
-    }
+    if(value != null)
+      if(value == PlanetStatus.OK || value == PlanetStatus.BangOK || value == PlanetStatus.TODO || value == PlanetStatus.EnRoute) {
+        Status = value;
+      } else {
+        throw new Exception("Planet.Status needs to be a PlanetStatus string");
+      }
   }
 }

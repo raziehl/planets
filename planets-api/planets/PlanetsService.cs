@@ -1,6 +1,14 @@
 using common.models;
+public interface IPlanetsService
+{
+    IEnumerable<Planet> GetAll();
+    Task<Planet> GetPlanet(int id);
+    Task Create(Planet model);
+    Task Update(int id, Planet model);
+    void Delete(int id);
+}
 
-public class PlanetsService {
+public class PlanetsService: IPlanetsService {
   private GeneralContext db;
 
   public PlanetsService() {
@@ -17,7 +25,7 @@ public class PlanetsService {
     return user;
   }
 
-  public async void Create(Planet planet) {
+  public async Task Create(Planet planet) {
     // if(db.Planets.Any(e => e.Name == planet.Name))
     //   throw new ApplicationException();
 
@@ -25,7 +33,7 @@ public class PlanetsService {
     await db.SaveChangesAsync();
   }
 
-  public async void Update(int id, Planet planet) {
+  public async Task Update(int id, Planet planet) {
     // var user = GetPlanet(id);
 
     db.Planets.Update(planet);
