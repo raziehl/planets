@@ -15,6 +15,14 @@ public class Planet {
     get;
     private set;
   } = PlanetStatus.TODO;
+
+  /*
+    For demonstration purposes only the Image will be stored as a base64 encoded string 
+    in the database, otherwise in a real production environment i would've prefered to
+    have the images uploaded to some storage bucket and only have the URL of the image
+    in the database
+  */
+  public string Image { get; set; }
   
 
   public Planet(
