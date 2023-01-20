@@ -5,7 +5,7 @@ public interface IPlanetsService
     Task<Planet> GetPlanet(int id);
     Task Create(Planet model);
     Task Update(int id, Planet model);
-    void Delete(int id);
+    Task Delete(int id);
 }
 
 public class PlanetsService: IPlanetsService {
@@ -20,9 +20,9 @@ public class PlanetsService: IPlanetsService {
   }
 
   public async Task<Planet> GetPlanet(int id) {
-    var user = await db.Planets.FindAsync(id);
-    if (user == null) throw new KeyNotFoundException("User not found");
-    return user;
+    var planet = await db.Planets.FindAsync(id);
+    if (planet == null) throw new KeyNotFoundException("Planet not found");
+    return planet;
   }
 
   public async Task Create(Planet planet) {
@@ -40,7 +40,7 @@ public class PlanetsService: IPlanetsService {
     await db.SaveChangesAsync();
   }
 
-  public async void Delete(int id) {
+  public async Task Delete(int id) {
     db.Planets.Remove(await GetPlanet(id));
     await db.SaveChangesAsync();
   }
