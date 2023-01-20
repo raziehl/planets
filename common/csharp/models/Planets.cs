@@ -22,7 +22,7 @@ public class Planet {
     have the images uploaded to some storage bucket and only have the URL of the image
     in the database
   */
-  public string Image { get; set; }
+  public string? Image { get; set; }
   
 
   public Planet(
