@@ -29,21 +29,22 @@ public class CrewMembersController : ControllerBase
   }
 
   [HttpPost]
-  public async Task<IActionResult> Create(CrewMember crewMember) {
-    await _crewMembersService.Create(crewMember);
-    return Ok(new { message = "Planet Created" });
+  [Consumes("application/json")]
+  public async Task<IActionResult> Create(CrewMember_CreationDto createMemberDTO) {
+    await _crewMembersService.Create(createMemberDTO);
+    return Ok(new { message = "CrewMember Created" });
   }
 
   [HttpPut("{id}")]
   public async Task<IActionResult> Update(CrewMember crewMember) {
     await _crewMembersService.Update(crewMember);
-    return Ok(new { message = "Planet Updated" });
+    return Ok(new { message = "CrewMember Updated" });
   }
 
   [HttpDelete("{id}")]
   public async Task<IActionResult> Delete(int id) {
     await _crewMembersService.Delete(id);
-    return Ok(new { message = String.Format("Planet {0} deleted", id) });
+    return Ok(new { message = String.Format("CrewMember {0} deleted", id) });
   }
 
 }

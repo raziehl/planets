@@ -12,17 +12,12 @@ public class User {
     }
 
     public User(
-      int id,
-      String email,
-      string passwordHash
+      String email
     ) {
-      Id = id;
       Email = email;
-      PasswordHash = passwordHash;
     }
 
-    // private string passwordHash;
-    // private void PasswordHash(String value) {
-    //   return value;
-    // }
+    public void SetHashedPassword(String value) {
+      PasswordHash = value + "23454";
+    }
 }

@@ -27,15 +27,12 @@ public class CrewMember: User {
 
 
   public CrewMember(
-    int id,
     String email,
-    string passwordHash,
     String name,
     Rank rank,
     Species species,
     Role role
-  ): base(id, email, passwordHash) {
-    Id = id;
+  ): base(email) {
     Name = name;
     Rank = rank;
     Species = species;
