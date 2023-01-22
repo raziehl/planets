@@ -24,13 +24,13 @@ public class CrewMembersService: ICrewMembersService {
 
   public async Task<CrewMember> FindOne(int id) {
     var crew = await db.CrewMembers.FindAsync(id);
-    if (crew == null) throw new KeyNotFoundException("Planet not found");
+    if (crew == null) throw new KeyNotFoundException("CrewMember not found");
     return crew;
   }
 
   public async Task Create(CrewMember_CreationDto createMemberDto) {
     if(db.CrewMembers.Any(e => e.Email == createMemberDto.Email))
-      throw new Exception("User must have a unique Email");
+      throw new Exception("CrewMember must have a unique Email");
 
     CrewMember member = new CrewMember(
       createMemberDto.Email,
@@ -49,7 +49,7 @@ public class CrewMembersService: ICrewMembersService {
     CrewMember member = await FindOne(id);
 
     if (updateMemberDto.Email != member.Email && db.CrewMembers.Any(x => x.Email == updateMemberDto.Email))
-      throw new Exception("User with the email '" + updateMemberDto.Email + "' already exists");
+      throw new Exception("CrewMember with the email '" + updateMemberDto.Email + "' already exists");
 
     if(!string.IsNullOrEmpty(updateMemberDto.Password))
       member.PasswordHash = SecurityUtil.HashEncryptPassword(updateMemberDto.Password);
