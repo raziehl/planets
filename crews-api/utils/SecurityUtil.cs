@@ -13,7 +13,7 @@ static class SecurityUtil
   static SecurityUtil()
   {
     String? private_key = Environment.GetEnvironmentVariable("PRIVATE_KEY");
-    PrivateKey = private_key != null && private_key.Length > 0 ? private_key : throw new Exception("Security Environment Variables not set.");
+    PrivateKey = !string.IsNullOrEmpty(private_key) ? private_key : throw new Exception("Security Environment Variables not set.");
   }
 
   public static String HashEncryptPassword(String value)

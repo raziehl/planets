@@ -36,8 +36,8 @@ public class CrewMembersController : ControllerBase
   }
 
   [HttpPut("{id}")]
-  public async Task<IActionResult> Update(CrewMember crewMember) {
-    await _crewMembersService.Update(crewMember);
+  public async Task<IActionResult> Update(int id, CrewMember_UpdateDto updateMemberDTO) {
+    await _crewMembersService.Update(id, updateMemberDTO);
     return Ok(new { message = "CrewMember Updated" });
   }
 
