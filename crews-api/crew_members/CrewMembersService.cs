@@ -16,8 +16,6 @@ public class CrewMembersService: ICrewMembersService {
 
   public CrewMembersService() {
     db = new GeneralContext();
-
-    Console.WriteLine(SecurityUtil.PrivateKey);
   }
 
   public IEnumerable<CrewMember> FindAll() {
@@ -27,7 +25,9 @@ public class CrewMembersService: ICrewMembersService {
   public async Task<CrewMember> FindOne(int id) {
     var crew = await db.CrewMembers.FindAsync(id);
     if (crew == null) throw new KeyNotFoundException("Planet not found");
-    Console.WriteLine(crew.PasswordHash);
+
+    Console.WriteLine(SecurityUtil.VerifyPassword("password2", crew.PasswordHash));
+
     return crew;
   }
 
@@ -42,7 +42,7 @@ public class CrewMembersService: ICrewMembersService {
       createMemberDto.Species,
       createMemberDto.Role
     );
-    // member,PasswordHash = SecurityUtil.HashPassword(createMemberDto.Password);
+    member.PasswordHash = SecurityUtil.HashEncryptPassword(createMemberDto.Password);
 
     await db.CrewMembers.AddAsync(member);
     await db.SaveChangesAsync();
