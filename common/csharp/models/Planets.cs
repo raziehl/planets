@@ -12,9 +12,10 @@ public class Planet {
   public String Name { get; set; }
   public String Description { get; set; }
   public String Status {
-    get;
-    private set;
-  } = PlanetStatus.TODO;
+    get => _status;
+    set => _status = ValidateStatus(value);
+  }
+
 
   /*
     For demonstration purposes only the Image will be stored as a base64 encoded string 
@@ -35,17 +36,15 @@ public class Planet {
     Name = name;
     Description = description;
     Image = image;
-
-    SetStatus(status);
+    Status = status;
   }
 
-
-  public void SetStatus(String value) {
-    if(value != null)
-      if(value == PlanetStatus.OK || value == PlanetStatus.BangOK || value == PlanetStatus.TODO || value == PlanetStatus.EnRoute) {
-        Status = value;
-      } else {
-        throw new Exception("Planet.Status needs to be a PlanetStatus string");
-      }
+  private string _status = PlanetStatus.TODO;
+  private String ValidateStatus(String value) {
+    if(value == PlanetStatus.OK || value == PlanetStatus.BangOK || value == PlanetStatus.TODO || value == PlanetStatus.EnRoute) {
+      return value;
+    } else {
+      return PlanetStatus.TODO;
+    }
   }
 }
