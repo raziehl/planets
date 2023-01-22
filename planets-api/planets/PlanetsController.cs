@@ -35,8 +35,8 @@ public class PlanetsController : ControllerBase
   }
 
   [HttpPut("{id}")]
-  public async Task<IActionResult> Update(int id, Planet planet) {
-    await _planetsService.Update(id, planet);
+  public async Task<IActionResult> Update(Planet planet) {
+    await _planetsService.Update(planet);
     return Ok(new { message = "Planet Updated" });
   }
 
