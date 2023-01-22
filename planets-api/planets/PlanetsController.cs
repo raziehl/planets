@@ -6,11 +6,11 @@ namespace planets_api.Controllers;
 [Route("planets")]
 public class PlanetsController : ControllerBase
 {
-  private readonly ILogger<RootController> _logger;
+  private readonly ILogger<PlanetsController> _logger;
   private readonly IPlanetsService _planetsService;
 
   public PlanetsController(
-    ILogger<RootController> logger,
+    ILogger<PlanetsController> logger,
     IPlanetsService planetsService
   ) {
     _logger = logger;
