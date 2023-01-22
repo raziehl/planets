@@ -51,6 +51,7 @@ public class CrewMembersController : ControllerBase
   }
 
   [HttpPut("{id}")]
+  [Consumes("application/json")]
   public async Task<IActionResult> Update(int id, CrewMember_UpdateDto updateMemberDTO) {
     try {
       await _crewMembersService.Update(id, updateMemberDTO);
