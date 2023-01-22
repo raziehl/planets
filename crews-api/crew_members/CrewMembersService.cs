@@ -1,5 +1,7 @@
 using common.models;
-using System.Text.Json;
+using crews_api.utils;
+// using crews_api.services;
+
 public interface ICrewMembersService
 {
     IEnumerable<CrewMember> FindAll();
@@ -14,6 +16,8 @@ public class CrewMembersService: ICrewMembersService {
 
   public CrewMembersService() {
     db = new GeneralContext();
+
+    Console.WriteLine(SecurityUtil.PrivateKey);
   }
 
   public IEnumerable<CrewMember> FindAll() {
@@ -38,7 +42,7 @@ public class CrewMembersService: ICrewMembersService {
       createMemberDto.Species,
       createMemberDto.Role
     );
-    member.SetHashedPassword(createMemberDto.Password);
+    // member,PasswordHash = SecurityUtil.HashPassword(createMemberDto.Password);
 
     await db.CrewMembers.AddAsync(member);
     await db.SaveChangesAsync();
@@ -53,5 +57,4 @@ public class CrewMembersService: ICrewMembersService {
     db.CrewMembers.Remove(await FindOne(id));
     await db.SaveChangesAsync();
   }
-  
 }

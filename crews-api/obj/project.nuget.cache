@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wSu0lbmeiflqswmpQisMYEWIBDYGw3NaeE4hFrJMJH5yCTlrRNQbNqV3NCADkjufnGtSj2rKhiUtgQpiAmaWPw==",
+  "dgSpecHash": "mB54ZJDzzVwVLsTs0me08L43PYNAL6G4UbPpA/VEmTPDv7qn8Fs1FxJJfRyK0rf6lNidLb4FOnVOgiCvA5GjiQ==",
   "success": true,
   "projectFilePath": "/home/raziel/Documents/playground/dotnet/planets/crews-api/crews-api.csproj",
   "expectedPackageFiles": [
+    "/home/raziel/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.aspnetcore.openapi/7.0.2/microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.data.sqlite.core/7.0.2/microsoft.data.sqlite.core.7.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.entityframeworkcore/7.0.2/microsoft.entityframeworkcore.7.0.2.nupkg.sha512",

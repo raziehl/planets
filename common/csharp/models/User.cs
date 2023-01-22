@@ -16,8 +16,4 @@ public class User {
     ) {
       Email = email;
     }
-
-    public void SetHashedPassword(String value) {
-      PasswordHash = value + "23454";
-    }
 }
