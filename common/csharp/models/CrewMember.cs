@@ -19,16 +19,27 @@ public enum Role {
   Analysis
 }
 
-public class CrewMember {
-  public int Id { get; set; }
+public class CrewMember: User {
   public String Name { get; set; }
-  public Rank Rank { get; set;}
+  public Rank Rank { get; set; }
+  public Species Species { get; set; }
+  public Role Role { get; set; }
 
 
-  public CrewMember(int id, String name, Rank rank) {
+  public CrewMember(
+    int id,
+    String email,
+    string passwordHash,
+    String name,
+    Rank rank,
+    Species species,
+    Role role
+  ): base(id, email, passwordHash) {
     Id = id;
     Name = name;
     Rank = rank;
+    Species = species;
+    Role = role;
   }
 
 
