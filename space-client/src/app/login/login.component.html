@@ -1,6 +1,24 @@
 <div class="container">
-  <p>login works!</p>
-  <form>
-    <input nbInput fullWidth placeholder="TextField"/>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <nb-card>
+      <nb-card-body>
+        <label style="font-size: 25px;"><b>Login</b></label><br><br>
+        <input nbInput fullWidth name="emailForm" class="input-margin" placeholder="Email"
+         formControlName="email"
+         [status]="((email?.invalid && email?.touched) || email?.dirty) && email?.invalid ? 'danger' : 'basic'"/>
+        <div *ngIf="(email?.invalid && email?.touched) || email?.dirty">
+          <small *ngIf="(email?.errors || {})['required']" class="text-danger">Primary email is required</small>
+          <small *ngIf="(email?.errors || {})['pattern']" class="text-danger">Please provide a valid email address</small>
+        </div>
+
+        <input nbInput fullWidth name="passwordForm" class="input-margin" placeholder="Password" formControlName="password"
+        [status]="((password?.invalid && password?.touched) || password?.dirty) && password?.invalid ? 'danger' : 'basic'"/>
+        <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
+          <small *ngIf="(password?.errors || {})['required']" class="text-danger">Password is required</small>
+          <small *ngIf="(password?.errors || {})['minlength']" class="text-danger">Password needs to be at least 6 characters long</small>
+        </div>
+        <button nbButton fullWidth type="submit">Login</button>
+      </nb-card-body>
+    </nb-card>
   </form>
 </div>
