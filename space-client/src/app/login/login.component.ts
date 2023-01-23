@@ -9,6 +9,7 @@ import { HttpService } from '../core/http.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  showPassword = false;
 
   constructor(
     private http: HttpService
@@ -34,11 +35,25 @@ export class LoginComponent {
   }
 
   async onSubmit() {
-    // if(this.email)
-    console.log(await this.http.login({
-      email: this.email?.value,
-      password: this.password?.value
-    }));
-    console.log('SUBMITTED')
+    if(this.loginForm.valid) {
+      // if(this.email)
+      console.log(await this.http.login({
+        email: this.email?.value,
+        password: this.password?.value
+      }));
+      console.log('SUBMITTED')
+    }
+  }
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+
+  toggleShowPassword() {
+    console.log("Toggle Password");
+    this.showPassword = !this.showPassword;
   }
 }

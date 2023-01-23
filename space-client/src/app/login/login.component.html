@@ -11,8 +11,18 @@
           <small *ngIf="(email?.errors || {})['pattern']" class="text-danger">Please provide a valid email address</small>
         </div>
 
-        <input nbInput fullWidth name="passwordForm" class="input-margin" type="password" placeholder="Password" formControlName="password"
-        [status]="((password?.invalid && password?.touched) || password?.dirty) && password?.invalid ? 'danger' : 'basic'"/>
+        <nb-form-field>
+          <input nbInput fullWidth name="passwordForm" class="input-margin" 
+          [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password"
+          [status]="((password?.invalid && password?.touched) || password?.dirty) && password?.invalid ? 'danger' : 'basic'"/>
+          <button nbSuffix nbButton ghost (click)="toggleShowPassword()" type="button">
+            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                    pack="eva"
+                    [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+            </nb-icon>
+          </button>
+        </nb-form-field>
+
         <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
           <small *ngIf="(password?.errors || {})['required']" class="text-danger">Password is required</small>
           <small *ngIf="(password?.errors || {})['minlength']" class="text-danger">Password needs to be at least 6 characters long</small>
