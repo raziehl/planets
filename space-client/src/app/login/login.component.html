@@ -11,7 +11,7 @@
           <small *ngIf="(email?.errors || {})['pattern']" class="text-danger">Please provide a valid email address</small>
         </div>
 
-        <input nbInput fullWidth name="passwordForm" class="input-margin" placeholder="Password" formControlName="password"
+        <input nbInput fullWidth name="passwordForm" class="input-margin" type="password" placeholder="Password" formControlName="password"
         [status]="((password?.invalid && password?.touched) || password?.dirty) && password?.invalid ? 'danger' : 'basic'"/>
         <div *ngIf="(password?.invalid && password?.touched) || password?.dirty">
           <small *ngIf="(password?.errors || {})['required']" class="text-danger">Password is required</small>

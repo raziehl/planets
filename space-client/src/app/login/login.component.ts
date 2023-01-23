@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from '../core/http.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor() {
+  constructor(
+    private http: HttpService
+  ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -30,8 +33,12 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
-  onSubmit() {
+  async onSubmit() {
     // if(this.email)
+    console.log(await this.http.login({
+      email: this.email?.value,
+      password: this.password?.value
+    }));
     console.log('SUBMITTED')
   }
 }
