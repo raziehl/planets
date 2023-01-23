@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using common.models;
+using crews_api.utils;
 namespace crews_api.Controllers;
 
 [ApiController]
@@ -7,35 +7,37 @@ namespace crews_api.Controllers;
 public class RootController : ControllerBase
 {
   private readonly ILogger<RootController> _logger;
+  private readonly ICrewMembersService _crewMembersService;
   private GeneralContext db;
 
-  public RootController(ILogger<RootController> logger)
-  {
+  public RootController(
+    ILogger<RootController> logger,
+    ICrewMembersService crewMembersService
+  ) {
     _logger = logger;
+    _crewMembersService = crewMembersService;
     db = new GeneralContext();
   }
 
-  [HttpGet]
-  public CrewMember? GetCrewMember()
+  [HttpPost("login")]
+  [Consumes("application/json")]
+  public IActionResult Login(LoginDto login)
   {
     try {
-      return db.CrewMembers.OrderBy(m => m.Id).FirstOrDefault();
+      var member = _crewMembersService.FindOneByEmail(login.Email);
+      if(SecurityUtil.VerifyPassword(login.Password, member.PasswordHash))
+        return Ok(new { token = SecurityUtil.GenerateJSONWebToken() });
+      else throw new ArgumentException("Invalid password");
     } catch(Exception e) {
-      _logger.LogError(e.ToString());
-      return null;
+      Console.WriteLine(e.Message);
+      return BadRequest(e.Message);
     }
   }
 
-  [HttpPost]
-  [Consumes("application/json")]
-  public async Task<String> PostCrewMember(CrewMember member) {
-    try {
-      await db.CrewMembers.AddAsync(member);
-      await db.SaveChangesAsync();
-      return "Success";
-    } catch(Exception e) {
-      _logger.LogError(e.ToString());
-      return "Unsuccessful";
-    }
+
+  [HttpGet]
+  public IActionResult HealthCheck()
+  {
+    return Ok(new { message = "Crews API Online" });
   }
 }

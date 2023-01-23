@@ -4,6 +4,8 @@ namespace crews_api.utils;
 using bCrypt = BCrypt.Net.BCrypt;
 using System.Security.Cryptography;
 using System.Text;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 static class SecurityUtil
 {
@@ -21,8 +23,28 @@ static class SecurityUtil
     return bCrypt.HashPassword(Encrypt(value));
   }
 
-  public static bool VerifyPassword(String password, String passwordHash) {
+  public static bool VerifyPassword(String password, String passwordHash)
+  {
     return bCrypt.Verify(Encrypt(password), passwordHash);
+  }
+
+  public static string GenerateJSONWebToken()
+  {
+    String? jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+      !string.IsNullOrEmpty(jwtKey) ? jwtKey : throw new ArgumentException("JWT_KEY misconfigured")
+    ));
+    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+    var token = new JwtSecurityToken(
+      Environment.GetEnvironmentVariable("JWT_ISSUER"),
+      Environment.GetEnvironmentVariable("JWT_ISSUER"),
+      null,
+      expires: DateTime.Now.AddMinutes(120),
+      signingCredentials: credentials
+    );
+
+    return new JwtSecurityTokenHandler().WriteToken(token);
   }
 
   private static string Encrypt(string clearText)
@@ -45,7 +67,7 @@ static class SecurityUtil
     }
     return clearText;
   }
-  
+
   private static string Decrypt(string cipherText)
   {
     cipherText = cipherText.Replace(" ", "+");

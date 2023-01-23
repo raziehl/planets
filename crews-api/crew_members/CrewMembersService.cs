@@ -6,6 +6,7 @@ public interface ICrewMembersService
 {
     IEnumerable<CrewMember> FindAll();
     Task<CrewMember> FindOne(int id);
+    CrewMember FindOneByEmail(String email);
     Task Create(CrewMember_CreationDto model);
     Task Update(int id, CrewMember_UpdateDto model);
     Task Delete(int id);
@@ -26,6 +27,12 @@ public class CrewMembersService: ICrewMembersService {
     var crew = await db.CrewMembers.FindAsync(id);
     if (crew == null) throw new KeyNotFoundException("CrewMember not found");
     return crew;
+  }
+
+  public CrewMember FindOneByEmail(String email) {
+    var member = db.CrewMembers.Where(e => e.Email == email).First();
+    if (member == null) throw new KeyNotFoundException("CrewMember not found");
+    return member;
   }
 
   public async Task Create(CrewMember_CreationDto createMemberDto) {
