@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/auth.service';
 import { HttpService } from '../core/http.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class LoginComponent {
   showPassword = false;
 
   constructor(
-    private http: HttpService
+    private http: HttpService,
+    private auth: AuthService,
+    private router: Router
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
@@ -36,12 +40,15 @@ export class LoginComponent {
 
   async onSubmit() {
     if(this.loginForm.valid) {
-      // if(this.email)
-      console.log(await this.http.login({
+      const res = await this.http.login({
         email: this.email?.value,
         password: this.password?.value
-      }));
-      console.log('SUBMITTED')
+      });
+
+      if(res?.token)
+        this.auth.registerJwtToken(res?.token);
+
+      this.router.navigate(['/planets']);
     }
   }
 
