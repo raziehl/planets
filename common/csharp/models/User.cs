@@ -9,7 +9,7 @@ public class User {
     public String PasswordHash {
       get;
       set;
-    }
+    } = default!;
 
     public User(
       String email

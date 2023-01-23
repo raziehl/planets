@@ -10,16 +10,16 @@ determine whether it is suitable for human life or not. The human captain can us
 application in order to communicate the status of the expedition to the other exploring
 teams, so that they do not visit the same planet again.
 
-### Prerequisites
+## Prerequisites
 
 node v18.10
 npm v8.19.2
 dotnet 7.0.102
 dotnet-ef 7.0.2
 
-### Test curls
+## Test curls
 
-```
+```bash
 curl -X POST localhost:3001/login -d '{ "email": "example@email.com", "password": "examplepassword" }' -H 'Content-Type: application/json' -v
 
 curl localhost:3001/auth_check -H "Authorization: Bearer {token}" -v

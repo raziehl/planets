@@ -16,4 +16,20 @@ public class CrewMember_CreationDto {
     [Required]
     [MinLength(6)]
     public string Password { get; set; }
+
+    public CrewMember_CreationDto(
+      string name,
+      string email,
+      Rank rank,
+      Species species,
+      Role role,
+      string password
+    ) {
+      Name = name;
+      Email = email;
+      Rank = rank;
+      Species = species;
+      Role = role;
+      Password = password;
+    }
 }

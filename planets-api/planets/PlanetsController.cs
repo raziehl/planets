@@ -49,7 +49,7 @@ public class PlanetsController : ControllerBase
     }
   }
 
-  [HttpPut("{id}")]
+  [HttpPut]
   public async Task<IActionResult> Update(Planet planet) {
     try {
       await _planetsService.Update(planet);

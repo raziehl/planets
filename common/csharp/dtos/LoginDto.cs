@@ -8,4 +8,12 @@ public class LoginDto {
     [Required]
     [MinLength(6)]
     public string Password { get; set; }
+
+    public LoginDto(
+      string email,
+      string password
+    ) {
+      Email = email;
+      Password = password;
+    }
 }
