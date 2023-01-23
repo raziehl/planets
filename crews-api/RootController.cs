@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using crews_api.utils;
 namespace crews_api.Controllers;
 
@@ -39,5 +40,11 @@ public class RootController : ControllerBase
   public IActionResult HealthCheck()
   {
     return Ok(new { message = "Crews API Online" });
+  }
+
+  [HttpGet("auth_check")]
+  [Authorize]
+  public IActionResult AuthorizationCheck() {
+    return Ok(new { message = "Working Authorization Scheme"});
   }
 }

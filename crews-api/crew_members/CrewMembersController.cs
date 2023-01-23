@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using common.models;
 namespace planets_api.Controllers;
 
 [ApiController]

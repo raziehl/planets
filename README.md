@@ -17,3 +17,10 @@ npm v8.19.2
 dotnet 7.0.102
 dotnet-ef 7.0.2
 
+### Test curls
+
+```
+curl -X POST localhost:3001/login -d '{ "email": "example@email.com", "password": "examplepassword" }' -H 'Content-Type: application/json' -v
+
+curl localhost:3001/auth_check -H "Authorization: Bearer {token}" -v
+```
