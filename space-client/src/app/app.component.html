@@ -6,10 +6,22 @@
 
   <nb-layout-column>    
     <router-outlet></router-outlet>
+    
+
+    <nb-card *ngIf="breakpoint.isHandset" style="position: fixed; left: 0; bottom: -30px; width: 100%; text-align: center;">
+      <nb-card-body>
+        <nb-actions size="medium" fullWidth>
+          <nb-action icon="globe-3" (click)="globeAction()"></nb-action>
+          <nb-action icon="person"></nb-action>
+          <nb-action icon="settings-outline"></nb-action>
+        </nb-actions>
+      </nb-card-body>
+    </nb-card>
   </nb-layout-column>
 
 
-  <nb-layout-footer *ngIf="breakpoint.isHandset" fixed>
-  </nb-layout-footer>
+
+  <!-- <nb-layout-footer fixed>
+  </nb-layout-footer> -->
 
 </nb-layout>

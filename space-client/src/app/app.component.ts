@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbIconConfig } from '@nebular/theme';
 import { BreakpointService } from './core/breakpoint.service';
 
 @Component({
@@ -15,5 +16,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  globeAction() {
+    console.log("globe action")
   }
 }

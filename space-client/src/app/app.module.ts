@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbButtonModule, NbIconModule, NbFormFieldModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbButtonModule, NbIconModule, NbFormFieldModule, NbActionsModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './login/login.component';
 import { CrewsComponent } from './crews/crews.component';
@@ -33,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     NbCardModule,
     NbButtonModule,
     NbIconModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbActionsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
