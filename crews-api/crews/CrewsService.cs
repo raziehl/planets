@@ -7,7 +7,7 @@ public interface ICrewsService
     IEnumerable<Crew> FindAll();
     Task<Crew> FindOne(int id);
     Task Create(Crew model);
-    Task Update(Crew model);
+    Task Update(int id, Crew model);
     Task Delete(int id);
 }
 
@@ -36,7 +36,12 @@ public class CrewsService: ICrewsService {
     await db.SaveChangesAsync();
   }
 
-  public async Task Update(Crew crew) {
+  public async Task Update(int id, Crew newCrew) {
+    Crew crew = await FindOne(id);
+
+    crew.CrewName = newCrew.CrewName;
+    crew.CrewMembers = newCrew.CrewMembers;
+
     db.Crews.Update(crew);
     await db.SaveChangesAsync();
   }

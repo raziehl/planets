@@ -49,10 +49,10 @@ public class CrewsController : ControllerBase
     }
   }
 
-  [HttpPut]
-  public async Task<IActionResult> Update(Crew crew) {
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Update(int id, Crew crew) {
     try {
-      await _crewsService.Update(crew);
+      await _crewsService.Update(id, crew);
       return Ok(new { message = "Crew Updated" });
     } catch(Exception e) {
       _logger.LogWarning(e.Message);
