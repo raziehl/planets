@@ -9,10 +9,10 @@
 
     <div style="flex: 1"><b>PlanetsAPP</b></div>
 
-    <nb-card style="margin: 0; flex: 2.5">
-      <nb-card-body style="padding: 0">
+    <nb-card style="margin: 0; flex: 2.5; height: 100%">
+      <nb-card-body style="padding: 0;">
         <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" style="height: 100%; width: 100%">
-            <button nbButtonToggle value="planets" [pressed]="path == '/planets'"  fullWidth  (click)="router.navigate(['\planets'])"><nb-icon icon="globe-3"></nb-icon> Planets</button>
+            <button nbButtonToggle value="planets" [pressed]="path == '/planets'"  fullWidth (click)="router.navigate(['\planets'])"><nb-icon icon="globe-3"></nb-icon> Planets</button>
           <button nbButtonToggle value="crews" [pressed]="path == '/crews'"  fullWidth (click)="router.navigate(['\crews'])"><nb-icon icon="person"></nb-icon> Crews</button>
           <button nbButtonToggle value="settings" [pressed]="path == '/settings'"  fullWidth (click)="router.navigate(['\seettings'])">Three</button>
         </nb-button-group>

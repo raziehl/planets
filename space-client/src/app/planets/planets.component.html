@@ -1,17 +1,14 @@
 <div class="container">
-  <p>Planets Works</p>
-
-
   <nb-accordion>
     <nb-accordion-item *ngFor="let planet of planets">
       <nb-accordion-item-header style="display: flex">
-        <div style="flex: 0.1; width: 100px; height: 100px; border-radius: 50%; overflow: hidden">
-          <img style="display: inline; margin: 0 auto; margin-left: -25%; width: auto; height: 100%" [src]="planet.image">
+        <div style="flex: 0.1;" class="image-cropper">
+          <img [src]="planet.image">
         </div>
         <div style="flex: 0.01"></div>
         <div style="flex: 1">
           <div style="font-size: 25px;">{{ planet.name }}</div>
-          <div>{{ planet.status }}</div>
+          <div>Status: {{ planet.status }}</div>
         </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body>
