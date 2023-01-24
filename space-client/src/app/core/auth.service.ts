@@ -5,19 +5,22 @@ import { CrewMember } from 'src/models';
   providedIn: 'root'
 })
 export class AuthService {
-  user?: string;
+  user?: CrewMember;
   token?: string;
 
   constructor() {
     this.token = localStorage.getItem('JWT_TOKEN') || undefined;
-    this.user = JSON.parse(localStorage.getItem('USER_DATA') as string);
+    this.user = new CrewMember(JSON.parse(localStorage.getItem('USER_DATA') as string));
+
+    console.log(JSON.parse(localStorage.getItem('USER_DATA') as string));
+    console.log(this.user);
   }
 
   login(creds: { user: CrewMember, token: string }) {
     this.token = creds.token;
     localStorage.setItem('JWT_TOKEN', creds.token);
     localStorage.setItem('USER_DATA', JSON.stringify(creds.user));
-    this.user = creds.token;
+    this.user = creds.user;
   }
 
   logout() {

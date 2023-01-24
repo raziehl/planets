@@ -20,7 +20,7 @@
     </nb-card>
 
     <div style="flex: 1;">
-      <nb-user style="float: right" name="John Doe" title="Engineer"></nb-user>
+      <nb-user *ngIf="auth.user" style="float: right" [name]="auth.user.name || 'John Doe'" [title]="auth.user.Rank"></nb-user>
     </div>
 
   </nb-layout-header>
