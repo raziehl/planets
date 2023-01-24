@@ -24,7 +24,7 @@ public class CrewsService: ICrewsService {
 
   public async Task<Crew> FindOne(int id) {
     var crew = await db.Crews.FindAsync(id);
-    if (crew == null) throw new KeyNotFoundException("Planet not found");
+    if (crew == null) throw new KeyNotFoundException("Crew not found");
     return crew;
   }
 

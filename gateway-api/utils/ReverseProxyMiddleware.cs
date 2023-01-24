@@ -88,13 +88,14 @@ public class ReverseProxyMiddleware
     return new HttpMethod(method);
   }
 
-  private Uri? BuildTargetUri(HttpRequest request)
-  {
+  private Uri? BuildTargetUri(HttpRequest request) {
     Uri? targetUri = null;
 
-    if (request.Path.StartsWithSegments("/crews", out var remainingPath))
-    {
-      targetUri = new Uri("http://localhost:3001/crews" + remainingPath);
+    if (request.Path.StartsWithSegments("/crews_gateway", out var remainingPath)) {
+      targetUri = new Uri("http://localhost:3001" + remainingPath);
+    } else if(request.Path.StartsWithSegments("/planets_gateway", out var remainingPath3)) {
+      Console.WriteLine("Planets");
+      targetUri = new Uri("http://localhost:3002" + remainingPath3);
     }
 
     return targetUri;
