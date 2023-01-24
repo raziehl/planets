@@ -49,10 +49,10 @@ public class PlanetsController : ControllerBase
     }
   }
 
-  [HttpPut]
-  public async Task<IActionResult> Update(Planet planet) {
+  [HttpPut("{id}")]
+  public async Task<IActionResult> Update(int id, Planet planet) {
     try {
-      await _planetsService.Update(planet);
+      await _planetsService.Update(id, planet);
       return Ok(new { message = "Planet Updated" });
     } catch(Exception e) {
       _logger.LogWarning(e.Message);

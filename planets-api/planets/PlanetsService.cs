@@ -4,7 +4,7 @@ public interface IPlanetsService
     IEnumerable<Planet> GetAll();
     Task<Planet> GetPlanet(int id);
     Task Create(Planet model);
-    Task Update(Planet model);
+    Task Update(int id, Planet model);
     Task Delete(int id);
 }
 
@@ -33,8 +33,15 @@ public class PlanetsService: IPlanetsService {
     await db.SaveChangesAsync();
   }
 
-  public async Task Update(Planet planet) {
-    db.Planets.Update(planet);
+  public async Task Update(int id, Planet newPlanet) {
+    Planet planet = await GetPlanet(id);
+
+    planet.Name = newPlanet.Name;
+    planet.Image = newPlanet.Image;
+    planet.Description = newPlanet.Description;
+    planet.Status = newPlanet.Status;
+
+    db.Planets.Update(newPlanet);
     await db.SaveChangesAsync();
   }
 
