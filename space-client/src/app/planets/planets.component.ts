@@ -18,11 +18,31 @@ export class PlanetsComponent implements OnInit{
   ) {}
 
   async ngOnInit() {
+    await this.getPlanets();
+  }
+
+  async getPlanets() {
     try {
       this.planets = await this.http.planets();
-      // this.toastr.info("asd");
     } catch(err) {
       this.toastr.danger(err);
+    }
+  }
+
+  createPlanet() {
+
+  }
+
+  editPlanet(planet: Planet) {
+    console.log('EDIT');
+  }
+
+  async deletePlanet(planet: Planet) {
+    try {
+      this.toastr.info((await this.http.deletePlanet(planet)).message, "Delete Successful");
+      await this.getPlanets();
+    } catch(err) {
+      this.toastr.danger("Not Working");
     }
   }
 

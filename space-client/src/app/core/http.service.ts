@@ -41,4 +41,13 @@ export class HttpService {
       throw err;
     }
   }
+
+  async deletePlanet(planet: Planet) {
+    try {
+      return await lastValueFrom(this.http.delete<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/planets/${planet.id}`));
+    } catch(err) {
+      console.error(err);
+      throw err;
+    }
+  }
 }

@@ -11,13 +11,15 @@ import { CrewsComponent } from './crews/crews.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EditPlanetComponent } from './edit-planet/edit-planet.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     CrewsComponent,
-    PlanetsComponent
+    PlanetsComponent,
+    EditPlanetComponent
   ],
   imports: [
     BrowserModule,

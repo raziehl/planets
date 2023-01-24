@@ -1,4 +1,12 @@
 <div class="container">
+  <br>
+
+  <button nbButton fullWidth status="primary" (click)="createPlanet()">
+    <nb-icon icon="plus"></nb-icon> Add Planet
+  </button>
+
+  <br><br>
+
   <nb-accordion>
     <nb-accordion-item *ngFor="let planet of planets">
       <nb-accordion-item-header style="display: flex">
@@ -9,6 +17,12 @@
         <div style="flex: 1">
           <div style="font-size: 25px;">{{ planet.name }}</div>
           <div>Status: {{ planet.status }}</div>
+        </div>
+        <div style="flex: 0.3;">
+          <nb-button-group>
+            <button nbButton status="primary" (click)="editPlanet(planet)">Edit</button>
+            <button nbButton status="danger" (click)="deletePlanet(planet)">Delete</button>
+          </nb-button-group>
         </div>
       </nb-accordion-item-header>
       <nb-accordion-item-body>
