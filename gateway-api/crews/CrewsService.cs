@@ -3,6 +3,7 @@ namespace gateway_api.services;
 
 public interface ICrewsService {
   Task<Object?> getAllMembers();
+  Task<Object?> get(String path);
 }
 
 public class CrewsService: ICrewsService
@@ -19,6 +20,12 @@ public class CrewsService: ICrewsService
     _http = httpClientFactory.CreateClient();
     _http.BaseAddress = new Uri("http://localhost:3001");
     Console.WriteLine(_http.BaseAddress);
+  }
+
+  public async Task<Object?> get(String path) {
+    var res = await _http.GetAsync(path);
+    var content = await res.Content.ReadFromJsonAsync<Object>();
+    return content;
   }
 
   public async Task<Object?> getAllMembers() {
