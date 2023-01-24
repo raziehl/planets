@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbButtonModule, NbIconModule, NbFormFieldModule, NbActionsModule, NbTabsetModule, NbMenuModule, NbRouteTabsetModule, NbButtonGroupModule, NbUserModule, NbToastrModule, NbGlobalPhysicalPosition, NbAccordionModule, NbDialogModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbInputModule, NbCardModule, NbButtonModule, NbIconModule, NbFormFieldModule, NbActionsModule, NbTabsetModule, NbMenuModule, NbRouteTabsetModule, NbButtonGroupModule, NbUserModule, NbToastrModule, NbGlobalPhysicalPosition, NbAccordionModule, NbDialogModule, NbRadioModule, NbSelectModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { LoginComponent } from './login/login.component';
 import { CrewsComponent } from './crews/crews.component';
@@ -40,6 +40,7 @@ import { EditPlanetComponent } from './edit-planet/edit-planet.component';
     NbButtonGroupModule,
     NbUserModule,
     NbAccordionModule,
+    NbSelectModule,
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot({
       position: NbGlobalPhysicalPosition.BOTTOM_RIGHT

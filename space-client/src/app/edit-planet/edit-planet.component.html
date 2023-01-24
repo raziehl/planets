@@ -33,6 +33,14 @@
 
         <br>
 
+        <div *ngIf="!creationMode">
+          <nb-select placeholder="Select Showcase" [(selected)]="status" fullWidth>
+            <nb-option *ngFor="let option of planetStatusOptions" [value]="option.value">{{ option.label }}</nb-option>
+          </nb-select>
+
+          <br><br>
+        </div>
+
         <button nbButton fullWidth type="submit" *ngIf="!creationMode" status="success">Update Planet</button>
         <button nbButton fullWidth type="submit" *ngIf="creationMode" status="success">Create Planet</button>
       </nb-card-body>

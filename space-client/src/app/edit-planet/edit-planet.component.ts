@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Planet } from 'src/models/planet.model';
+import { Planet, PlanetStatus } from 'src/models/planet.model';
 import { AuthService } from '../core/auth.service';
 import { HttpService } from '../core/http.service';
 
@@ -18,6 +17,8 @@ export class EditPlanetComponent implements OnInit {
   fileToUpload?: File;
   imageSource?: string;
 
+  status?: any;
+
   constructor(
     private http: HttpService,
     private auth: AuthService
@@ -30,6 +31,8 @@ export class EditPlanetComponent implements OnInit {
         Validators.required
       ])
     });
+
+    console.log(this.planetStatusOptions);
   }
 
   ngOnInit() {
@@ -37,6 +40,7 @@ export class EditPlanetComponent implements OnInit {
       this.creationMode = true;
       this.planet = new Planet({} as Planet);
     } else {
+      this.status = this.planet.status;
       this.planetName?.setValue(this.planet.name);
       this.description?.setValue(this.planet.description);
     }
@@ -50,12 +54,17 @@ export class EditPlanetComponent implements OnInit {
     return this.planetForm.get('description');
   }
 
+  get planetStatusOptions() {
+    let arr: { value: string, label: string }[] = [];
+    Object.keys(PlanetStatus).forEach(e => arr.push({ value: e, label: e }));
+    return arr;
+  }
+
   async onSubmit() {
     if(this.planetForm.valid) {
       (this.planet as Planet).name = this.planetName?.value;
       (this.planet as Planet).description = this.description?.value;
-
-      console.log(this.planet);
+      (this.planet as Planet).status = this.status;
 
       if(this.creationMode) {
         this.http.createPlanet(this.planet as Planet);
