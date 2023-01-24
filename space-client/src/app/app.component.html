@@ -12,9 +12,9 @@
     <nb-card style="margin: 0; flex: 2.5">
       <nb-card-body style="padding: 0">
         <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" style="height: 100%; width: 100%">
-          <button nbButtonToggle value="One"  fullWidth>One</button>
-          <button nbButtonToggle value="Two"  fullWidth>Two</button>
-          <button nbButtonToggle value="Three"  fullWidth>Three</button>
+            <button nbButtonToggle value="planets" [pressed]="path == '/planets'"  fullWidth  (click)="router.navigate(['\planets'])"><nb-icon icon="globe-3"></nb-icon> Planets</button>
+          <button nbButtonToggle value="crews" [pressed]="path == '/crews'"  fullWidth (click)="router.navigate(['\crews'])"><nb-icon icon="person"></nb-icon> Crews</button>
+          <button nbButtonToggle value="settings" [pressed]="path == '/settings'"  fullWidth (click)="router.navigate(['\seettings'])">Three</button>
         </nb-button-group>
       </nb-card-body>
     </nb-card>
@@ -28,15 +28,12 @@
   <nb-layout-column>    
     <router-outlet></router-outlet>
 
-
-    
-
     <nb-card *ngIf="breakpoint.isHandset && auth.isLoggedIn()" style="position: fixed; left: 0; bottom: -30px; width: 100%; text-align: center;">
       <nb-card-body>
         <nb-actions size="medium" fullWidth>
-          <nb-action icon="globe-3" (click)="globeAction()"></nb-action>
-          <nb-action icon="person"></nb-action>
-          <nb-action icon="settings-outline"></nb-action>
+          <nb-action icon="globe-3" (click)="router.navigate(['\planets'])"></nb-action>
+          <nb-action icon="person" (click)="router.navigate(['\crews'])"></nb-action>
+          <nb-action icon="settings-outline" (click)="router.navigate(['\settings'])"></nb-action>
         </nb-actions>
       </nb-card-body>
     </nb-card>

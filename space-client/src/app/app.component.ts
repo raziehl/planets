@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbIconConfig, NbMenuItem } from '@nebular/theme';
+import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 import { BreakpointService } from './core/breakpoint.service';
 
@@ -10,45 +10,16 @@ import { BreakpointService } from './core/breakpoint.service';
 })
 export class AppComponent implements OnInit {
   title = 'client';
-  items: NbMenuItem[] = [
-    {
-      title: 'Profile',
-      icon: 'person-outline',
-    },
-    {
-      title: 'Change Password',
-      icon: 'lock-outline',
-    },
-    {
-      title: 'Privacy Policy',
-      icon: { icon: 'checkmark-outline', pack: 'eva' },
-    },
-    {
-      title: 'Logout',
-      icon: 'unlock-outline',
-    },
-  ];
-  
-  tabs = [
-    {
-      title: 'Route tab #1',
-      route: '/pages/description',
-      icon: 'home',
-      responsive: true, // hide title before `$tabset-tab-text-hide-breakpoint` value
-    },
-    {
-      title: 'Route tab #2',
-      route: '/pages/images',
-      }
-    ];
+  path = '';
 
   constructor(
     public breakpoint: BreakpointService,
-    public auth: AuthService
+    public auth: AuthService,
+    public router: Router
   ) {}
 
   ngOnInit() {
-    
+    this.path = window.location.pathname;
   }
 
   updateSingleSelectGroupValue(value: any): void {
@@ -56,6 +27,8 @@ export class AppComponent implements OnInit {
     console.log(value);
     // this.cd.markForCheck();
   }
+
+
 
   globeAction() {
     console.log("globe action")
