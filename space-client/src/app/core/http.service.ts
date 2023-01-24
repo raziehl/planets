@@ -42,6 +42,25 @@ export class HttpService {
     }
   }
 
+  async createPlanet(planet: Planet) {
+    try {
+      return await lastValueFrom(this.http.post<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/planets`, planet));
+    } catch(err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
+
+  async updatePlanet(planet: Planet) {
+    try {
+      return await lastValueFrom(this.http.put<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/planets/${planet.id}`, planet));
+    } catch(err) {
+      console.error(err);
+      throw err;
+    }
+  }
+
   async deletePlanet(planet: Planet) {
     try {
       return await lastValueFrom(this.http.delete<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/planets/${planet.id}`));

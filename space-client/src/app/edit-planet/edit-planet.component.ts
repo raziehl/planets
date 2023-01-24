@@ -24,12 +24,10 @@ export class EditPlanetComponent implements OnInit {
   ) {
     this.planetForm = new FormGroup({
       planetName: new FormControl('', [
-        Validators.required,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        Validators.required
       ]),
       description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
+        Validators.required
       ])
     });
   }
@@ -54,8 +52,16 @@ export class EditPlanetComponent implements OnInit {
 
   async onSubmit() {
     if(this.planetForm.valid) {
-      
+      (this.planet as Planet).name = this.planetName?.value;
+      (this.planet as Planet).description = this.description?.value;
 
+      console.log(this.planet);
+
+      if(this.creationMode) {
+        this.http.createPlanet(this.planet as Planet);
+      } else {
+        this.http.updatePlanet(this.planet as Planet);
+      }
     }
   }
 
@@ -80,9 +86,7 @@ export class EditPlanetComponent implements OnInit {
 
   async onFileSelected(event: any) {
     this.fileToUpload = event.target.files[0];
-
-    if(this.fileToUpload)
-      this.readImage(this.fileToUpload);
+    this.readImage(this.fileToUpload as File);
   }
 
 }

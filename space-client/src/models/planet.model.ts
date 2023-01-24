@@ -6,7 +6,7 @@ export class Planet {
   status: string;
 
   constructor(planet: Partial<Planet> = {}) {
-    this.id = planet.id || -1;
+    this.id = planet.id || 0;
     this.name = planet.name || "";
     this.description = planet.description || "";
     this.image = planet.description || "";

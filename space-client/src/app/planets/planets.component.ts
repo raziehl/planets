@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Planet } from 'src/models/planet.model';
+import { BreakpointService } from '../core/breakpoint.service';
 import { HttpService } from '../core/http.service';
 import { EditPlanetComponent } from '../edit-planet/edit-planet.component';
 
@@ -16,7 +17,8 @@ export class PlanetsComponent implements OnInit{
   constructor(
     private http: HttpService,
     private toastr: NbToastrService,
-    private dialog: NbDialogService
+    private dialog: NbDialogService,
+    public breakpoint: BreakpointService
   ) {}
 
   async ngOnInit() {

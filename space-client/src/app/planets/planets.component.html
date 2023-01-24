@@ -10,7 +10,7 @@
   <nb-accordion>
     <nb-accordion-item *ngFor="let planet of planets">
       <nb-accordion-item-header style="display: flex">
-        <div style="flex: 0.1;" class="image-cropper">
+        <div [style]="breakpoint.isHandset ? 'flex: 0.5' : 'flex: 0.1;'" class="image-cropper">
           <img [src]="planet.image">
         </div>
         <div style="flex: 0.01"></div>
@@ -20,8 +20,8 @@
         </div>
         <div style="flex: 0.3;">
           <nb-button-group>
-            <button nbButton status="primary" (click)="editPlanet(planet)">Edit</button>
-            <button nbButton status="danger" (click)="deletePlanet(planet)">Delete</button>
+            <button nbButton status="primary" (click)="editPlanet(planet)"><nb-icon icon="edit"></nb-icon></button>
+            <button nbButton status="danger" (click)="deletePlanet(planet)"><nb-icon icon="trash"></nb-icon></button>
           </nb-button-group>
         </div>
       </nb-accordion-item-header>

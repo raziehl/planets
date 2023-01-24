@@ -41,7 +41,7 @@ public class PlanetsService: IPlanetsService {
     planet.Description = newPlanet.Description;
     planet.Status = newPlanet.Status;
 
-    db.Planets.Update(newPlanet);
+    db.Planets.Update(planet);
     await db.SaveChangesAsync();
   }
 
