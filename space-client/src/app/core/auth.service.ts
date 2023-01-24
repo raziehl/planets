@@ -11,9 +11,6 @@ export class AuthService {
   constructor() {
     this.token = localStorage.getItem('JWT_TOKEN') || undefined;
     this.user = new CrewMember(JSON.parse(localStorage.getItem('USER_DATA') as string));
-
-    console.log(JSON.parse(localStorage.getItem('USER_DATA') as string));
-    console.log(this.user);
   }
 
   login(creds: { user: CrewMember, token: string }) {

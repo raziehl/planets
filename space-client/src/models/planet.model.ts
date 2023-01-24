@@ -1,15 +1,27 @@
+
+export enum PlanetStatus {
+  OK = "OK",
+  BangOK = "!OK",
+  TODO = "TODO",
+  EnRoute = "En Route",
+}
+
 export class Planet {
   id: number;
   name: string;
   description: string;
   image: string;
-  status: string;
+  status: PlanetStatus;
 
-  constructor(planet: Partial<Planet> = {}) {
-    this.id = planet.id || 0;
-    this.name = planet.name || "";
-    this.description = planet.description || "";
-    this.image = planet.description || "";
-    this.status = planet.status || "";
+  constructor(planet: Planet) {
+    this.id = planet.id;
+    this.name = planet.name;
+    this.description = planet.description;
+    this.image = planet.description;
+    this.status = planet.status;
+  }
+
+  get Status() {
+    return this.status;
   }
 }

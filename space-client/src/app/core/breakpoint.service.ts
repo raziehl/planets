@@ -15,7 +15,6 @@ export class BreakpointService {
     this.breakpointObserver
     .observe([Breakpoints.Small, Breakpoints.Handset])
     .subscribe((state: BreakpointState) => {
-      console.log(state);
       if(state.matches) {
         this.isHandset = true;
       } else {

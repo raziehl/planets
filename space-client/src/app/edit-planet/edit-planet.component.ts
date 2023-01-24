@@ -35,7 +35,7 @@ export class EditPlanetComponent implements OnInit {
   ngOnInit() {
     if(!this.planet) {
       this.creationMode = true;
-      this.planet = new Planet();
+      this.planet = new Planet({} as Planet);
     } else {
       this.planetName?.setValue(this.planet.name);
       this.description?.setValue(this.planet.description);
