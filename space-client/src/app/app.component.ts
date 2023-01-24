@@ -24,21 +24,8 @@ export class AppComponent implements OnInit {
 
   updateSingleSelectGroupValue(value: any): void {
     // this.singleSelectGroupValue = value;
-    console.log(value);
+    // console.log(value);
     // this.cd.markForCheck();
   }
 
-
-
-  globeAction() {
-    console.log("globe action")
-  }
-
-  crewAction() {
-    console.log("globe action")
-  }
-
-  settingsAction() {
-    console.log("globe action")
-  }
 }

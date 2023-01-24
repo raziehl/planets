@@ -18,11 +18,22 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+    // this.planets().then(console.log);
+  }
 
   async login(loginCreds: { email: string, password: string }) {
     try {
       return await lastValueFrom(this.http.post<{ token: string }>('http://localhost:3001/login', loginCreds, this.defaultOptions));
+    } catch(err) {
+      console.error(err);
+      return;
+    }
+  }
+
+  async planets() {
+    try {
+      return await lastValueFrom(this.http.get('http://localhost:3002/planets'));
     } catch(err) {
       console.error(err);
       return;
