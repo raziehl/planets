@@ -19,12 +19,13 @@ export class HttpService {
   constructor(
     private http: HttpClient
   ) {
+    this.http
     // this.planets().then(console.log);
   }
 
   async login(loginCreds: { email: string, password: string }) {
     try {
-      return await lastValueFrom(this.http.post<{ token: string }>('http://localhost:3001/login', loginCreds, this.defaultOptions));
+      return await lastValueFrom(this.http.post<{ token: string }>(`${env.gatewayApiUrl}/crews_gateway/login`, loginCreds, this.defaultOptions));
     } catch(err) {
       console.error(err);
       return;
@@ -33,7 +34,7 @@ export class HttpService {
 
   async planets() {
     try {
-      return await lastValueFrom(this.http.get('http://localhost:3002/planets'));
+      return await lastValueFrom(this.http.get(`${env.gatewayApiUrl}/planets_gateway/planets`));
     } catch(err) {
       console.error(err);
       return;
