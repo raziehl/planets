@@ -27,7 +27,10 @@ public class RootController : ControllerBase
     try {
       var member = _crewMembersService.FindOneByEmail(login.Email);
       if(SecurityUtil.VerifyPassword(login.Password, member.PasswordHash))
-        return Ok(new { token = SecurityUtil.GenerateJSONWebToken() });
+        return Ok(new {
+          user = member,
+          token = SecurityUtil.GenerateJSONWebToken()
+        });
       else throw new ArgumentException("Invalid password");
     } catch(Exception e) {
       Console.WriteLine(e.Message);

@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
 import { AuthService } from '../core/auth.service';
 import { HttpService } from '../core/http.service';
 
@@ -16,7 +18,8 @@ export class LoginComponent {
   constructor(
     private http: HttpService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: NbToastrService
   ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
@@ -40,15 +43,17 @@ export class LoginComponent {
 
   async onSubmit() {
     if(this.loginForm.valid) {
-      const res = await this.http.login({
-        email: this.email?.value,
-        password: this.password?.value
-      });
-
-      if(res?.token)
-        this.auth.registerJwtToken(res?.token);
-
-      this.router.navigate(['/planets']);
+      try {
+        const res = await this.http.login({
+          email: this.email?.value,
+          password: this.password?.value
+        });
+        this.auth.login(res);
+        this.router.navigate(['/planets']);
+      } catch(err) {
+        console.error(err);
+        this.toastr.danger("Login failed", "Login Operation"); 
+      }
     }
   }
 

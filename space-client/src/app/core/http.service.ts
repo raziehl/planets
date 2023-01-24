@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Planet } from '../../models/planet.model';
+import { Planet, CrewMember } from '../../models';
 import { environment as env } from '../../environments/environment';
 
 @Injectable({
@@ -26,10 +26,10 @@ export class HttpService {
 
   async login(loginCreds: { email: string, password: string }) {
     try {
-      return await lastValueFrom(this.http.post<{ token: string }>(`${env.gatewayApiUrl}/crews_gateway/login`, loginCreds, this.defaultOptions));
+      return await lastValueFrom(this.http.post<{ user: CrewMember, token: string }>(`${env.gatewayApiUrl}/crews_gateway/login`, loginCreds, this.defaultOptions));
     } catch(err) {
       console.error(err);
-      return;
+      throw err;
     }
   }
 
