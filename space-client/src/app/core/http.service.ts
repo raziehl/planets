@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Planet, CrewMember } from '../../models';
+import { Planet, CrewMember, Crew } from '../../models';
 import { environment as env } from '../../environments/environment';
 
 @Injectable({
@@ -35,10 +35,18 @@ export class HttpService {
 
   async crews() {
     try {
-      return await lastValueFrom(this.http.get(`${env.gatewayApiUrl}/crews_gateway/crews`));
+      return await lastValueFrom(this.http.get<Crew[]>(`${env.gatewayApiUrl}/crews_gateway/crews`));
     } catch(err) {
       throw err;
     }
+  }
+
+  async createCrew(crew: Crew) {
+    return await lastValueFrom(this.http.post(`${env.gatewayApiUrl}/crews_gateway/crews`, crew));
+  }
+
+  async updateCrew(crew: Crew) {
+    return await lastValueFrom(this.http.put(`${env.gatewayApiUrl}/crews_gateway/crews/${crew.id}`, crew));
   }
 
   async planets() {

@@ -1,1 +1,16 @@
-<p>crews works!</p>
+<div class="container">
+  <br>
+
+  <button nbButton fullWidth status="primary" (click)="createCrew()">
+    <nb-icon icon="plus"></nb-icon> Add Crew
+  </button>
+
+  <br><br>
+
+  <nb-card *ngFor="let crew of crews">
+    <nb-card-body>
+      {{ crew.crewName }}
+    </nb-card-body>
+  </nb-card>
+
+</div>

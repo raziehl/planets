@@ -1,0 +1,25 @@
+<div class="container" style="max-width: 450px;">
+  <form [formGroup]="crewForm" (ngSubmit)="onSubmit()">
+    <nb-card>
+      <nb-card-body>
+        <!-- {{ planet?.name }} -->
+
+        <label style="font-size: 25px;"><b>Crew</b></label><br><br>
+        <input nbInput fullWidth name="crewForm" class="input-margin" placeholder="Planet Name"
+         formControlName="crewName"
+         [status]="((crewName?.invalid && crewName?.touched) || crewName?.dirty) && crewName?.invalid ? 'danger' : 'basic'"/>
+        <div *ngIf="(crewName?.invalid && crewName?.touched) || crewName?.dirty">
+          <small *ngIf="(crewName?.errors || {})['required']" class="text-danger">Planet name is required</small>
+        </div>
+        <br>
+
+        <div>
+          
+        </div>
+
+        <button nbButton fullWidth type="submit" *ngIf="!creationMode" status="success">Update Crew</button>
+        <button nbButton fullWidth type="submit" *ngIf="creationMode" status="success">Create Crew</button>
+      </nb-card-body>
+    </nb-card>
+  </form>
+</div>

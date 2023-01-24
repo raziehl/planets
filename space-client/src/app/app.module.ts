@@ -12,6 +12,7 @@ import { PlanetsComponent } from './planets/planets.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditPlanetComponent } from './edit-planet/edit-planet.component';
+import { EditCrewComponent } from './edit-crew/edit-crew.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditPlanetComponent } from './edit-planet/edit-planet.component';
     LoginComponent,
     CrewsComponent,
     PlanetsComponent,
-    EditPlanetComponent
+    EditPlanetComponent,
+    EditCrewComponent
   ],
   imports: [
     BrowserModule,
