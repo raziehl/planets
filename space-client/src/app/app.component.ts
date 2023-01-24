@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
-import { HttpService } from './core/http.service';
+import { Component, OnInit } from '@angular/core';
+import { BreakpointService } from './core/breakpoint.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'client';
 
-  constructor() {}
+  constructor(
+    public breakpoint: BreakpointService
+  ) {}
+
+  ngOnInit() {
+    
+  }
 }
