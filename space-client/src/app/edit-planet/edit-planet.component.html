@@ -1,1 +1,41 @@
-<p>edit-planet works!</p>
+<div class="container" style="max-width: 450px;">
+  <form [formGroup]="planetForm" (ngSubmit)="onSubmit()">
+    <nb-card>
+      <nb-card-body>
+        <!-- {{ planet?.name }} -->
+
+        <label style="font-size: 25px;"><b>Planet</b></label><br><br>
+        <input nbInput fullWidth name="emailForm" class="input-margin" placeholder="Planet Name"
+         formControlName="planetName"
+         [status]="((planetName?.invalid && planetName?.touched) || planetName?.dirty) && planetName?.invalid ? 'danger' : 'basic'"/>
+        <div *ngIf="(planetName?.invalid && planetName?.touched) || planetName?.dirty">
+          <small *ngIf="(planetName?.errors || {})['required']" class="text-danger">Planet name is required</small>
+        </div>
+
+        <input nbInput fullWidth name="descriptionForm" class="input-margin" 
+        placeholder="Description" formControlName="description"
+        [status]="((description?.invalid && description?.touched) || description?.dirty) && description?.invalid ? 'danger' : 'basic'"/>
+
+        <!-- <input nbInput fullWidth name="descriptionForm" class="input-margin" 
+        placeholder="Description" formControlName="description"
+        [status]="((description?.invalid && description?.touched) || description?.dirty) && description?.invalid ? 'danger' : 'basic'"/> -->
+        
+        <div>
+          <img *ngIf="planet?.image" style="width: 100%; height: 100%" [src]="planet?.image">
+
+          <div>{{ fileToUpload?.name }}</div> <br>
+
+          <input type="file" style="display: none"
+          (change)="onFileSelected($event)" #fileUpload>
+          
+          <button nbButton (click)="fileUpload.click()"  fullWidth size="small"><nb-icon icon="image"></nb-icon>Upload New Planet Image</button>
+        </div>
+
+        <br>
+
+        <button nbButton fullWidth type="submit" *ngIf="!creationMode" status="success">Update Planet</button>
+        <button nbButton fullWidth type="submit" *ngIf="creationMode" status="success">Create Planet</button>
+      </nb-card-body>
+    </nb-card>
+  </form>
+</div>

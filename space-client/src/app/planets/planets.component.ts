@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NbToastrService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Planet } from 'src/models/planet.model';
 import { HttpService } from '../core/http.service';
+import { EditPlanetComponent } from '../edit-planet/edit-planet.component';
 
 @Component({
   selector: 'app-planets',
@@ -14,7 +15,8 @@ export class PlanetsComponent implements OnInit{
 
   constructor(
     private http: HttpService,
-    private toastr: NbToastrService
+    private toastr: NbToastrService,
+    private dialog: NbDialogService
   ) {}
 
   async ngOnInit() {
@@ -30,11 +32,19 @@ export class PlanetsComponent implements OnInit{
   }
 
   createPlanet() {
+    this.dialog.open(EditPlanetComponent, {
+      context: {
 
+      }
+    });
   }
 
   editPlanet(planet: Planet) {
-    console.log('EDIT');
+    this.dialog.open(EditPlanetComponent, {
+      context: {
+        planet: planet
+      }
+    });
   }
 
   async deletePlanet(planet: Planet) {
