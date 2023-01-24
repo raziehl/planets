@@ -31,7 +31,7 @@
 
     
 
-    <nb-card *ngIf="breakpoint.isHandset" style="position: fixed; left: 0; bottom: -30px; width: 100%; text-align: center;">
+    <nb-card *ngIf="breakpoint.isHandset && auth.isLoggedIn()" style="position: fixed; left: 0; bottom: -30px; width: 100%; text-align: center;">
       <nb-card-body>
         <nb-actions size="medium" fullWidth>
           <nb-action icon="globe-3" (click)="globeAction()"></nb-action>

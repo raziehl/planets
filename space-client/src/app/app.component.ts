@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbIconConfig, NbMenuItem } from '@nebular/theme';
+import { AuthService } from './core/auth.service';
 import { BreakpointService } from './core/breakpoint.service';
 
 @Component({
@@ -42,7 +43,8 @@ export class AppComponent implements OnInit {
     ];
 
   constructor(
-    public breakpoint: BreakpointService
+    public breakpoint: BreakpointService,
+    public auth: AuthService
   ) {}
 
   ngOnInit() {
