@@ -33,6 +33,14 @@ export class HttpService {
     }
   }
 
+  async crews() {
+    try {
+      return await lastValueFrom(this.http.get(`${env.gatewayApiUrl}/crews_gateway/crews`));
+    } catch(err) {
+      throw err;
+    }
+  }
+
   async planets() {
     try {
       return await lastValueFrom(this.http.get<Planet[]>(`${env.gatewayApiUrl}/planets_gateway/planets`));

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Planet, PlanetStatus } from 'src/models/planet.model';
 import { AuthService } from '../core/auth.service';
 import { HttpService } from '../core/http.service';
@@ -21,6 +22,8 @@ export class EditPlanetComponent implements OnInit {
 
   constructor(
     private http: HttpService,
+    private dialogRef: NbDialogRef<EditPlanetComponent>,
+    private toastr: NbToastrService,
     private auth: AuthService
   ) {
     this.planetForm = new FormGroup({
@@ -31,8 +34,6 @@ export class EditPlanetComponent implements OnInit {
         Validators.required
       ])
     });
-
-    console.log(this.planetStatusOptions);
   }
 
   ngOnInit() {
@@ -62,14 +63,22 @@ export class EditPlanetComponent implements OnInit {
 
   async onSubmit() {
     if(this.planetForm.valid) {
-      (this.planet as Planet).name = this.planetName?.value;
-      (this.planet as Planet).description = this.description?.value;
-      (this.planet as Planet).status = this.status;
+      try {
+        (this.planet as Planet).name = this.planetName?.value;
+        (this.planet as Planet).description = this.description?.value;
+        (this.planet as Planet).status = this.status;
 
-      if(this.creationMode) {
-        this.http.createPlanet(this.planet as Planet);
-      } else {
-        this.http.updatePlanet(this.planet as Planet);
+        if(this.creationMode) {
+          this.http.createPlanet(this.planet as Planet);
+        } else {
+          this.http.updatePlanet(this.planet as Planet);
+        }
+
+        this.toastr.success("Operation Successful", this.creationMode ? 'Planet Creation' : 'Planet Update');
+      } catch(err: any) {
+        this.toastr.danger(err.error, this.creationMode ? 'Planet Creation Failed' : 'Planet Update Failed');
+      } finally {
+        this.dialogRef.close();
       }
     }
   }
