@@ -5,9 +5,32 @@ public class ReverseProxyMiddleware
   private static readonly HttpClient _httpClient = new HttpClient();
   private readonly RequestDelegate _nextMiddleware;
 
-  public ReverseProxyMiddleware(RequestDelegate nextMiddleware)
+  private string crewsApiUrl;
+  private string planetsApiUrl;
+
+  private readonly ILogger<ReverseProxyMiddleware> _logger;
+
+  public ReverseProxyMiddleware(
+    RequestDelegate nextMiddleware,
+    ILogger<ReverseProxyMiddleware> logger
+  )
   {
     _nextMiddleware = nextMiddleware;
+    _logger = logger;
+
+
+    string? tmpCrewsApi = Environment.GetEnvironmentVariable("CREWS_API");
+    string? tmpPlanetsApi = Environment.GetEnvironmentVariable("PLANETS_API");
+
+    if(string.IsNullOrEmpty(tmpCrewsApi))
+      throw new Exception("CREW_API environment variable is not set");
+    
+    if(string.IsNullOrEmpty(tmpPlanetsApi))
+      throw new Exception("PLANETS_API environment variable is not set");
+
+    crewsApiUrl = tmpCrewsApi;
+    planetsApiUrl = tmpPlanetsApi;
+
     Console.WriteLine("Reverse Proxy initialized");
   }
 
@@ -15,7 +38,13 @@ public class ReverseProxyMiddleware
   {
     var targetUri = BuildTargetUri(context.Request);
 
-    Console.WriteLine(targetUri);
+    _logger.LogInformation(
+      string.Format(
+        "Reverse Proxying {0} to: {1}",
+        context.Request.Method,
+        targetUri?.ToString()
+      )
+    );
 
     if (targetUri != null)
     {
@@ -92,10 +121,9 @@ public class ReverseProxyMiddleware
     Uri? targetUri = null;
 
     if (request.Path.StartsWithSegments("/crews_gateway", out var remainingPath)) {
-      targetUri = new Uri("http://localhost:3001" + remainingPath);
+      targetUri = new Uri(crewsApiUrl + remainingPath);
     } else if(request.Path.StartsWithSegments("/planets_gateway", out var remainingPath3)) {
-      Console.WriteLine("Planets");
-      targetUri = new Uri("http://localhost:3002" + remainingPath3);
+      targetUri = new Uri(planetsApiUrl + remainingPath3);
     }
 
     return targetUri;
