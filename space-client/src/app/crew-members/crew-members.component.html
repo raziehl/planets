@@ -1,0 +1,9 @@
+<div class="container">
+
+  <nb-card *ngFor="let member of crewMembers" style="margin: 0" (click)="addNewCrewMemberToCrew(member)">
+    <nb-card-body>
+      {{ member.name }} | {{ member.Species }}
+    </nb-card-body>
+  </nb-card>
+
+</div>

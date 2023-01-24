@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
-import { Crew } from 'src/models';
+import { Crew, CrewMember } from 'src/models';
 import { AuthService } from '../core/auth.service';
 import { HttpService } from '../core/http.service';
 
@@ -14,6 +14,8 @@ export class EditCrewComponent {
   crew?: Crew;
   crewForm: FormGroup;
   creationMode: boolean = false;
+
+  candidateMembers: CrewMember[] = [];
 
   constructor(
     private http: HttpService,
@@ -28,13 +30,17 @@ export class EditCrewComponent {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     if(!this.crew) {
       this.creationMode = true;
       this.crew = new Crew({} as Crew);
     } else {
       this.crewName?.setValue(this.crew.crewName);
     }
+
+    (await this.http.crewMembers()).forEach(e => {
+      this.candidateMembers.push(new CrewMember(e));
+    });
   }
 
   get crewName() {
@@ -61,4 +67,13 @@ export class EditCrewComponent {
     }
   }
 
+  addCrewMember(member: CrewMember) {
+    this.candidateMembers = this.candidateMembers.filter(e => e != member);
+    this.crew?.crewMembers.push(member);
+  }
+
+  removeCrewMember(member: CrewMember) {
+    this.candidateMembers.push(member);
+    (this.crew as Crew).crewMembers = this.crew?.crewMembers.filter(e => e != member) as CrewMember[];
+  }
 }

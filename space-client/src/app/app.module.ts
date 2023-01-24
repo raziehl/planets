@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditPlanetComponent } from './edit-planet/edit-planet.component';
 import { EditCrewComponent } from './edit-crew/edit-crew.component';
+import { CrewMembersComponent } from './crew-members/crew-members.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { EditCrewComponent } from './edit-crew/edit-crew.component';
     CrewsComponent,
     PlanetsComponent,
     EditPlanetComponent,
-    EditCrewComponent
+    EditCrewComponent,
+    CrewMembersComponent
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,23 @@
          formControlName="crewName"
          [status]="((crewName?.invalid && crewName?.touched) || crewName?.dirty) && crewName?.invalid ? 'danger' : 'basic'"/>
         <div *ngIf="(crewName?.invalid && crewName?.touched) || crewName?.dirty">
-          <small *ngIf="(crewName?.errors || {})['required']" class="text-danger">Planet name is required</small>
+          <small *ngIf="(crewName?.errors || {})['required']" class="text-danger">Crew name is required</small>
         </div>
         <br>
 
-        <div>
-          
+        <div style="overflow-y: scroll; width: 500px; height: 200px; display: flex">
+          <div style="flex: 1">
+            Candidates: <br>
+            <button nbButton *ngFor="let candidate of candidateMembers"  size="small" style="margin-bottom: 5px; display: inline" (click)="addCrewMember(candidate)">
+              {{ candidate.name }} <div style="font-size: 10px; text-align: left">{{ candidate.Species }} | {{ candidate.Rank }}</div>
+            </button>
+          </div>
+          <div style="flex: 1">
+            Crew Members: <br>
+            <button nbButton *ngFor="let member of crew?.crewMembers" style="margin-bottom: 5px; display: inline" (click)="removeCrewMember(member)" size="small">
+              {{ member.name }} <div style="font-size: 10px; text-align: left">{{ member.Species }} | {{ member.Rank }}</div>
+            </button>
+          </div>
         </div>
 
         <button nbButton fullWidth type="submit" *ngIf="!creationMode" status="success">Update Crew</button>

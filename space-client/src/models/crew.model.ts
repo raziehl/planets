@@ -8,6 +8,6 @@ export class Crew {
   constructor(crew: Crew) {
     this.id = crew.id;
     this.crewName = crew.crewName;
-    this.crewMembers = crew.crewMembers;
+    this.crewMembers = crew.crewMembers || [];
   }
 }

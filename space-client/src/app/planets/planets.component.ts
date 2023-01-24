@@ -35,9 +35,7 @@ export class PlanetsComponent implements OnInit{
 
   createPlanet() {
     this.dialog.open(EditPlanetComponent, {
-      context: {
-
-      }
+      autoFocus: false
     });
   }
 

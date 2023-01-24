@@ -19,10 +19,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {
-    this.http
-    // this.planets().then(console.log);
-  }
+  ) {}
 
   async login(loginCreds: { email: string, password: string }) {
     try {
@@ -42,11 +39,27 @@ export class HttpService {
   }
 
   async createCrew(crew: Crew) {
-    return await lastValueFrom(this.http.post(`${env.gatewayApiUrl}/crews_gateway/crews`, crew));
+    try {
+      return await lastValueFrom(this.http.post(`${env.gatewayApiUrl}/crews_gateway/crews`, crew));
+    } catch(err) {
+      throw err;
+    }
   }
 
   async updateCrew(crew: Crew) {
-    return await lastValueFrom(this.http.put(`${env.gatewayApiUrl}/crews_gateway/crews/${crew.id}`, crew));
+    try {
+      return await lastValueFrom(this.http.put(`${env.gatewayApiUrl}/crews_gateway/crews/${crew.id}`, crew));
+    } catch(err) {
+      throw err;
+    }
+  }
+
+  async crewMembers() {
+    try {
+      return await lastValueFrom(this.http.get<CrewMember[]>(`${env.gatewayApiUrl}/crews_gateway/crew_members`));
+    } catch(err) {
+      throw err;
+    }
   }
 
   async planets() {

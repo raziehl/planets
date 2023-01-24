@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { Crew } from 'src/models';
+import { Crew, CrewMember } from 'src/models';
 import { HttpService } from '../core/http.service';
 import { EditCrewComponent } from '../edit-crew/edit-crew.component';
 
@@ -22,7 +22,9 @@ export class CrewsComponent implements OnInit {
   }
 
   createCrew() {
-    this.dialog.open(EditCrewComponent);
+    this.dialog.open(EditCrewComponent, {
+      autoFocus: false
+    });
   }
 
 }
