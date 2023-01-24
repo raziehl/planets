@@ -1,11 +1,34 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
+  <nb-layout-header *ngIf="!breakpoint.isHandset" fixed class="display: flex">
   <!-- Insert header here -->
+    <!-- <nb-card>
+      <nb-menu [items]="items">
+      </nb-menu>
+    </nb-card> -->
+
+    <div style="flex: 1"><b>PlanetsAPP</b></div>
+
+    <nb-card style="margin: 0; flex: 2.5">
+      <nb-card-body style="padding: 0">
+        <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" style="height: 100%; width: 100%">
+          <button nbButtonToggle value="One"  fullWidth>One</button>
+          <button nbButtonToggle value="Two"  fullWidth>Two</button>
+          <button nbButtonToggle value="Three"  fullWidth>Three</button>
+        </nb-button-group>
+      </nb-card-body>
+    </nb-card>
+
+    <div style="flex: 1;">
+      <nb-user style="float: right" name="John Doe" title="Engineer"></nb-user>
+    </div>
+
   </nb-layout-header>
 
   <nb-layout-column>    
     <router-outlet></router-outlet>
+
+
     
 
     <nb-card *ngIf="breakpoint.isHandset" style="position: fixed; left: 0; bottom: -30px; width: 100%; text-align: center;">
