@@ -10,7 +10,7 @@ public class Expedition {
     get => _status;
     set => _status = ValidateStatus(value);
   }
-  // public DateTime ReportDate { get; set; }
+  public DateTime ExpeditionDate { get; set; }
 
 
   private string _status = PlanetStatus.TODO;

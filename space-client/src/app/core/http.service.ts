@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Planet, CrewMember, Crew } from '../../models';
+import { Planet, CrewMember, Crew, Expedition } from '../../models';
 import { environment as env } from '../../environments/environment';
 
 @Injectable({
@@ -19,13 +19,23 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+    this.expeditions().then(console.log)
+  }
 
   async login(loginCreds: { email: string, password: string }) {
     try {
       return await lastValueFrom(this.http.post<{ user: CrewMember, token: string }>(`${env.gatewayApiUrl}/crews_gateway/login`, loginCreds, this.defaultOptions));
     } catch(err) {
       console.error(err);
+      throw err;
+    }
+  }
+
+  async expeditions() {
+    try {
+      return await lastValueFrom(this.http.get<Expedition[]>(`${env.gatewayApiUrl}/planets_gateway/expeditions`));
+    } catch(err) {
       throw err;
     }
   }
