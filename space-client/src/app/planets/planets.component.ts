@@ -48,21 +48,22 @@ export class PlanetsComponent implements OnInit{
       context: {
         planet: planet
       }
-    });
+    }).onClose.subscribe(() => this.getPlanets()).unsubscribe();
   }
 
   createPlanet() {
     this.dialog.open(EditPlanetComponent, {
       autoFocus: false
-    });
+    }).onClose.subscribe(() => this.getPlanets()).unsubscribe();
   }
 
   editPlanet(planet: Planet) {
     this.dialog.open(EditPlanetComponent, {
+      autoFocus: false,
       context: {
         planet: planet
       }
-    });
+    }).onClose.subscribe(() => this.getPlanets()).unsubscribe();
   }
 
   async deletePlanet(planet: Planet) {
