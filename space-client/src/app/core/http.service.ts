@@ -40,6 +40,7 @@ export class HttpService {
 
   async createExpedition(expedition: Expedition) {
     try {
+      console.log(expedition);
       return await lastValueFrom(this.http.post<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/expeditions`, expedition));      
     } catch(err) {
       throw err;

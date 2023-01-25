@@ -23,13 +23,16 @@ export class EditExpeditionComponent implements OnInit {
 
   get planetStatusOptions() {
     let arr: { value: string, label: string }[] = [];
-    Object.keys(PlanetStatus).forEach(e => arr.push({ value: e, label: e }));
+    // Object.keys(PlanetStatus).forEach(e => arr.push({ value: e, label: e }));
+    Object.values(PlanetStatus).forEach(e => arr.push({ value: e, label: e }));
     return arr;
   }
 
   async uploadExpedition() {
     // In production this would be the real crew of the active user
     let crew: Crew = new Crew((await this.http.crews())[0]);
+    
+    console.log(this.status)
 
     await this.http.createExpedition(new Expedition({
       crew: crew,
