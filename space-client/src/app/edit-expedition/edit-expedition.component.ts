@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbDialogRef } from '@nebular/theme';
 
 @Component({
   selector: 'app-edit-expedition',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class EditExpeditionComponent {
 
-  
+  constructor(
+    private dialogRef: NbDialogRef<EditExpeditionComponent>
+  ) {}
 
 }

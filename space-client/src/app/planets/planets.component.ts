@@ -3,6 +3,7 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { Planet, PlanetStatus } from 'src/models/planet.model';
 import { BreakpointService } from '../core/breakpoint.service';
 import { HttpService } from '../core/http.service';
+import { EditExpeditionComponent } from '../edit-expedition/edit-expedition.component';
 import { EditPlanetComponent } from '../edit-planet/edit-planet.component';
 
 @Component({
@@ -39,6 +40,15 @@ export class PlanetsComponent implements OnInit{
     } catch(err) {
       this.toastr.danger(err);
     }
+  }
+
+  addExpeditionToPlanet(planet: Planet) {
+    this.dialog.open(EditExpeditionComponent, {
+      autoFocus: false,
+      context: {
+        
+      }
+    });
   }
 
   createPlanet() {
