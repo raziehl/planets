@@ -11,6 +11,7 @@ public class Planet {
   public int Id { get; set; }
   public String Name { get; set; }
   public String Description { get; set; }
+  // Planet.Status is now deprecated as the status is now tracked as the newest Expedition.Status
   public String Status {
     get => _status;
     set => _status = ValidateStatus(value);
