@@ -59,6 +59,7 @@ export class EditCrewComponent {
         }
 
         this.toastr.success("Operation Successful", this.creationMode ? 'Crew Creation' : 'Crew Update');
+        this.dialogRef.close();
       } catch(err: any) {
         this.toastr.danger(err.error, this.creationMode ? 'Crew Creation Failed' : 'Crew Update Failed');
       } finally {

@@ -8,8 +8,19 @@
   <br><br>
 
   <nb-card *ngFor="let crew of crews" style="margin: 0">
-    <nb-card-body>
-      {{ crew.crewName }}
+    <nb-card-body style="display: flex">
+
+      <div style="flex: 1">
+        <b style="font-size: 20px;">{{ crew.crewName }}</b>
+        <div *ngFor="let member of crew.crewMembers">{{ member.name }}</div>
+      </div>
+
+      <div style="flex: 0.3;">
+        <nb-button-group>
+          <button nbButton status="primary" (click)="editCrew(crew)"><nb-icon icon="edit"></nb-icon></button>
+          <button nbButton status="danger" (click)="deleteCrew(crew)"><nb-icon icon="trash"></nb-icon></button>
+        </nb-button-group>
+      </div>
     </nb-card-body>
   </nb-card>
 

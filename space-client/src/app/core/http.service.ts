@@ -54,6 +54,14 @@ export class HttpService {
     }
   }
 
+  async deleteCrew(crew: Crew) {
+    try {
+      return await lastValueFrom(this.http.delete(`${env.gatewayApiUrl}/crews_gateway/crews/${crew.id}`));
+    } catch(err) {
+      throw err;
+    }
+  }
+
   async crewMembers() {
     try {
       return await lastValueFrom(this.http.get<CrewMember[]>(`${env.gatewayApiUrl}/crews_gateway/crew_members`));
