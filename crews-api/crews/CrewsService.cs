@@ -1,5 +1,5 @@
 using common.models;
-
+using Microsoft.EntityFrameworkCore;
 // namespace crews_api.services;
 
 public interface ICrewsService
@@ -13,13 +13,17 @@ public interface ICrewsService
 
 public class CrewsService: ICrewsService {
   private GeneralContext db;
+  private ICrewMembersService _crewMembersService;
 
-  public CrewsService() {
+  public CrewsService(
+    ICrewMembersService crewMembersService
+  ) {
     db = new GeneralContext();
+    _crewMembersService = crewMembersService;
   }
 
   public IEnumerable<Crew> FindAll() {
-    return db.Crews;
+    return db.Crews.Include(e => e.CrewMembers);
   }
 
   public async Task<Crew> FindOne(int id) {
@@ -31,9 +35,20 @@ public class CrewsService: ICrewsService {
   public async Task Create(Crew crew) {
     // if(db.Planets.Any(e => e.Name == planet.Name))
     //   throw new ApplicationException();
+    Crew newCrew = new Crew{
+      CrewName = crew.CrewName
+    };
 
-    await db.Crews.AddAsync(crew);
+    crew.CrewMembers.ForEach(async e => {
+      db.CrewMembers.Attach(e);
+      // newCrew.CrewMembers.Add((await _crewMembersService.FindOne(e.Id)));
+      newCrew.CrewMembers.Add(e);
+    });
+
+    await db.Crews.AddAsync(newCrew);
     await db.SaveChangesAsync();
+
+
   }
 
   public async Task Update(int id, Crew newCrew) {

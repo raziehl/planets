@@ -6,7 +6,7 @@ public class User {
 
     // Ignore PasswordHash when serializing User object as JSON
     [JsonIgnore]
-    public String PasswordHash {
+    public String? PasswordHash {
       get;
       set;
     } = default!;

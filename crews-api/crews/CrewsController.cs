@@ -44,7 +44,7 @@ public class CrewsController : ControllerBase
       await _crewsService.Create(crew);
       return Ok(new { message = "Crew Created" });
     } catch(Exception e) {
-      _logger.LogWarning(e.Message);
+      _logger.LogWarning(e.ToString());
       return BadRequest(e.Message);
     }
   }
