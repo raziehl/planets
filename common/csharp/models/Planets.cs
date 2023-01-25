@@ -15,6 +15,7 @@ public class Planet {
     get => _status;
     set => _status = ValidateStatus(value);
   }
+  public List<Expedition>? Expeditions { get; set; }
 
 
   /*

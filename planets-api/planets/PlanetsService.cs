@@ -3,6 +3,7 @@ public interface IPlanetsService
 {
     IEnumerable<Planet> GetAll();
     Task<Planet> GetPlanet(int id);
+    Task<Expedition> GetPlanetStatus(int id);
     Task Create(Planet model);
     Task Update(int id, Planet model);
     Task Delete(int id);
@@ -23,6 +24,19 @@ public class PlanetsService: IPlanetsService {
     var planet = await db.Planets.FindAsync(id);
     if (planet == null) throw new KeyNotFoundException("Planet not found");
     return planet;
+  }
+
+  public async Task<Expedition> GetPlanetStatus(int id) {
+    var planet = await db.Planets.FindAsync(id);
+
+    if(planet != null) {
+      return db.Expeditions
+            .OrderByDescending(e => e.ExpeditionDate)
+            .Where(e => e.PlanetId == planet.Id)
+            .First();
+    } else {
+      throw new Exception("No Planet found");
+    }
   }
 
   public async Task Create(Planet planet) {

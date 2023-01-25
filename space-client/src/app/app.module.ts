@@ -15,6 +15,7 @@ import { EditPlanetComponent } from './edit-planet/edit-planet.component';
 import { EditCrewComponent } from './edit-crew/edit-crew.component';
 import { CrewMembersComponent } from './crew-members/crew-members.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditExpeditionComponent } from './edit-expedition/edit-expedition.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ProfileComponent } from './profile/profile.component';
     EditPlanetComponent,
     EditCrewComponent,
     CrewMembersComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditExpeditionComponent
   ],
   imports: [
     BrowserModule,

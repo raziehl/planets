@@ -60,6 +60,17 @@ public class PlanetsController : ControllerBase
     }
   }
 
+  [HttpGet("status/{id}")]
+  public async Task<IActionResult> GetStatusById(int id) {
+    try {
+      return Ok(await _planetsService.GetPlanetStatus(id));
+    } catch(Exception e) {
+      _logger.LogWarning(e.Message);
+      return BadRequest(e.Message);
+    }
+  }
+
+
   [HttpDelete("{id}")]
   public async Task<IActionResult> Delete(int id) {
     try {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import { Planet, CrewMember, Crew } from '../../models';
+import { Planet, CrewMember, Crew, Expedition } from '../../models';
 import { environment as env } from '../../environments/environment';
 
 @Injectable({
@@ -26,6 +26,23 @@ export class HttpService {
       return await lastValueFrom(this.http.post<{ user: CrewMember, token: string }>(`${env.gatewayApiUrl}/crews_gateway/login`, loginCreds, this.defaultOptions));
     } catch(err) {
       console.error(err);
+      throw err;
+    }
+  }
+
+  async expeditions() {
+    try {
+      return await lastValueFrom(this.http.get<Expedition[]>(`${env.gatewayApiUrl}/planets_gateway/expeditions`));
+    } catch(err) {
+      throw err;
+    }
+  }
+
+  async createExpedition(expedition: Expedition) {
+    try {
+      console.log(expedition);
+      return await lastValueFrom(this.http.post<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/expeditions`, expedition));      
+    } catch(err) {
       throw err;
     }
   }
@@ -75,6 +92,14 @@ export class HttpService {
       return await lastValueFrom(this.http.get<Planet[]>(`${env.gatewayApiUrl}/planets_gateway/planets`));
     } catch(err) {
       console.error(err);
+      throw err;
+    }
+  }
+
+  async planetStatus(planet: Planet) {
+    try {
+      return await lastValueFrom(this.http.get<Expedition>(`${env.gatewayApiUrl}/planets_gateway/planets/status/${planet.id}`));
+    } catch(err) {
       throw err;
     }
   }

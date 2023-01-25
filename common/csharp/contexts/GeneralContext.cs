@@ -5,6 +5,7 @@ public class GeneralContext: DbContext {
   public DbSet<CrewMember> CrewMembers { get; set; } = default!;
   public DbSet<Crew> Crews { get; set; } = default!;
   public DbSet<Planet> Planets { get; set; } = default!;
+  public DbSet<Expedition> Expeditions { get; set; } = default!;
 
   public String DbPath { get; }
 

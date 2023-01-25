@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Z70QMm9hUy6E2qBEdNAaldrTKL3mnctvWCDqFeVlF3M2uA18A7IssGWB5AM3U/ydyOb30O+fQyKnIj5TaYGWDw==",
+  "dgSpecHash": "7A8pqi09t43BWwUCoS3p1dKhQO+6mFR83L++HfE6luwqcehA8GfB5GJ5rkSYO22wF/m2q/MSRf4iXvjjcgS6AQ==",
   "success": true,
   "projectFilePath": "/home/raziel/Documents/playground/dotnet/planets/planets-api/planets-api.csproj",
   "expectedPackageFiles": [
+    "/home/raziel/.nuget/packages/microsoft.aspnetcore.jsonpatch/7.0.2/microsoft.aspnetcore.jsonpatch.7.0.2.nupkg.sha512",
+    "/home/raziel/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/7.0.2/microsoft.aspnetcore.mvc.newtonsoftjson.7.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.aspnetcore.openapi/7.0.2/microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
+    "/home/raziel/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.data.sqlite.core/7.0.2/microsoft.data.sqlite.core.7.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.entityframeworkcore/7.0.2/microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.2/microsoft.entityframeworkcore.abstractions.7.0.2.nupkg.sha512",
@@ -24,6 +27,8 @@
     "/home/raziel/.nuget/packages/microsoft.extensions.options/7.0.0/microsoft.extensions.options.7.0.0.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/home/raziel/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/home/raziel/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/home/raziel/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.2/sqlitepclraw.bundle_e_sqlite3.2.1.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/sqlitepclraw.core/2.1.2/sqlitepclraw.core.2.1.2.nupkg.sha512",
     "/home/raziel/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.2/sqlitepclraw.lib.e_sqlite3.2.1.2.nupkg.sha512",
