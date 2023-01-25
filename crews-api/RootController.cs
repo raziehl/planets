@@ -26,7 +26,7 @@ public class RootController : ControllerBase
   {
     try {
       var member = _crewMembersService.FindOneByEmail(login.Email);
-      if(SecurityUtil.VerifyPassword(login.Password, member.PasswordHash))
+      if(!string.IsNullOrEmpty(member.PasswordHash) ? SecurityUtil.VerifyPassword(login.Password, member.PasswordHash) : throw new Exception("No password was provided"))
         return Ok(new {
           user = member,
           token = SecurityUtil.GenerateJSONWebToken()

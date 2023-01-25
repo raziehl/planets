@@ -28,8 +28,11 @@ public class CrewsService: ICrewsService {
 
   public async Task<Crew> FindOne(int id) {
     var crew = (await db.Crews.FindAsync(id));
-    await db.Entry(crew).Collection(e => e.CrewMembers).LoadAsync();
-    if (crew == null) throw new KeyNotFoundException("Crew not found");
+
+    if(crew != null)
+      await db.Entry<Crew>(crew).Collection(e => e.CrewMembers).LoadAsync();
+    else throw new KeyNotFoundException("Crew not found");
+    
     return crew;
   }
 
@@ -38,9 +41,12 @@ public class CrewsService: ICrewsService {
       CrewName = crew.CrewName
     };
 
-    crew.CrewMembers.ForEach(e => {
-      db.CrewMembers.Attach(e);
-      newCrew.CrewMembers.Add(e);
+    crew.CrewMembers.ForEach(async e => {
+      var member = await db.CrewMembers.FindAsync(e.Id);
+      if(member != null) {
+        db.CrewMembers.Attach(member);
+        newCrew.CrewMembers.Add(member);
+      }
     });
 
     await db.Crews.AddAsync(newCrew);
@@ -51,21 +57,20 @@ public class CrewsService: ICrewsService {
 
   public async Task Update(int id, Crew newCrew) {
     var crew = await db.Crews.FindAsync(id);
+    
+    if(crew != null) {
+      crew.CrewName = newCrew.CrewName;
+        newCrew.CrewMembers.ForEach(async e => {
+          var member = await db.CrewMembers.FindAsync(e.Id);
+          if(member != null) {
+            db.CrewMembers.Attach(member);
+            crew.CrewMembers.Add(member);
+          }
+        });
 
-    crew.CrewName = newCrew.CrewName;
-    crew.CrewMembers = newCrew.CrewMembers;
-
-    // if(!crew.CrewMembers.Any())
-    //   crew.CrewMembers = newCrew.CrewMembers;
-    // else {
-    //   newCrew.CrewMembers.ForEach(e => {
-    //     db.CrewMembers.Attach(e);
-    //     crew.CrewMembers.Add(e);
-    //   });
-    // }
-
-    db.Crews.Update(crew);
-    await db.SaveChangesAsync();
+      db.Crews.Update(crew);
+      await db.SaveChangesAsync();
+    }
   }
 
   public async Task Delete(int id) {
