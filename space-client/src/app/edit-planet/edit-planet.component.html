@@ -2,9 +2,8 @@
   <form [formGroup]="planetForm" (ngSubmit)="onSubmit()">
     <nb-card>
       <nb-card-body>
-        <!-- {{ planet?.name }} -->
 
-        <label style="font-size: 25px;"><b>Planet</b></label><br><br>
+        <label style="font-size: 25px;"><b>Planet <span *ngIf="planet?.id">- #{{ planet?.id }}</span></b></label><br><br>
         <input nbInput fullWidth name="emailForm" class="input-margin" placeholder="Planet Name"
          formControlName="planetName"
          [status]="((planetName?.invalid && planetName?.touched) || planetName?.dirty) && planetName?.invalid ? 'danger' : 'basic'"/>
@@ -28,7 +27,7 @@
           <input type="file" style="display: none"
           (change)="onFileSelected($event)" #fileUpload>
           
-          <button nbButton (click)="fileUpload.click()"  fullWidth size="small"><nb-icon icon="image"></nb-icon>Upload New Planet Image</button>
+          <button nbButton (click)="fileUpload.click()" type="button" fullWidth size="small"><nb-icon icon="image"></nb-icon>Upload New Planet Image</button>
         </div>
 
         <br>
