@@ -27,7 +27,8 @@ public class CrewsService: ICrewsService {
   }
 
   public async Task<Crew> FindOne(int id) {
-    var crew = await db.Crews.FindAsync(id);
+    var crew = (await db.Crews.FindAsync(id));
+    await db.Entry(crew).Collection(e => e.CrewMembers).LoadAsync();
     if (crew == null) throw new KeyNotFoundException("Crew not found");
     return crew;
   }
@@ -39,9 +40,8 @@ public class CrewsService: ICrewsService {
       CrewName = crew.CrewName
     };
 
-    crew.CrewMembers.ForEach(async e => {
+    crew.CrewMembers.ForEach(e => {
       db.CrewMembers.Attach(e);
-      // newCrew.CrewMembers.Add((await _crewMembersService.FindOne(e.Id)));
       newCrew.CrewMembers.Add(e);
     });
 
