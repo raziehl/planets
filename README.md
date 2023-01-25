@@ -77,3 +77,8 @@ The crews-api is responsible for handleing all Planets & Expeditions operations.
 ### SpaceClient
 
 The Angular frontend client of the system.
+
+
+### Database
+
+The database system chosen is SQLite for demonstration purposes.
