@@ -6,7 +6,6 @@ public class Expedition {
   public Planet Planet { get; set; }
   public int CrewId { get; set; }
   public Crew Crew { get; set; }
-  public List<Expedition> Expeditions { get; set; }
   public String Status {
     get => _status;
     set => _status = ValidateStatus(value);

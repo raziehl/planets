@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace gatewayapi.Migrations
 {
     [DbContext(typeof(GeneralContext))]
-    partial class GeneralContextModelSnapshot : ModelSnapshot
+    [Migration("20230125104948_ExpeditionsMigration")]
+    partial class ExpeditionsMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.2");
@@ -78,6 +81,9 @@ namespace gatewayapi.Migrations
                     b.Property<int>("CrewId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("ExpeditionId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("PlanetId")
                         .HasColumnType("INTEGER");
 
@@ -88,6 +94,8 @@ namespace gatewayapi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CrewId");
+
+                    b.HasIndex("ExpeditionId");
 
                     b.HasIndex("PlanetId");
 
@@ -135,6 +143,10 @@ namespace gatewayapi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("common.models.Expedition", null)
+                        .WithMany("Expeditions")
+                        .HasForeignKey("ExpeditionId");
+
                     b.HasOne("common.models.Planet", "Planet")
                         .WithMany("Expeditions")
                         .HasForeignKey("PlanetId")
@@ -149,6 +161,11 @@ namespace gatewayapi.Migrations
             modelBuilder.Entity("common.models.Crew", b =>
                 {
                     b.Navigation("CrewMembers");
+                });
+
+            modelBuilder.Entity("common.models.Expedition", b =>
+                {
+                    b.Navigation("Expeditions");
                 });
 
             modelBuilder.Entity("common.models.Planet", b =>
