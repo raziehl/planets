@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditPlanetComponent } from './edit-planet/edit-planet.component';
 import { EditCrewComponent } from './edit-crew/edit-crew.component';
 import { CrewMembersComponent } from './crew-members/crew-members.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CrewMembersComponent } from './crew-members/crew-members.component';
     PlanetsComponent,
     EditPlanetComponent,
     EditCrewComponent,
-    CrewMembersComponent
+    CrewMembersComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

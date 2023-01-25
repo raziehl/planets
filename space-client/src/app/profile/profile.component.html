@@ -1,0 +1,14 @@
+<div class="container">
+  <nb-card>
+    <nb-card-body style="display: flex;">
+      <div style="flex: 1">
+        <nb-user *ngIf="auth.user" [name]="auth.user.name || 'John Doe'" [title]="auth.user.Rank"></nb-user>
+        <br>
+        <div><b>Email:</b> {{ auth.user?.email }}</div>
+        <div><b>Rank:</b> {{ auth.user?.Rank }}</div>
+        <div><b>Species:</b> {{ auth.user?.Species }}</div>
+        <div><b>Role:</b> {{ auth.user?.Role }}</div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>

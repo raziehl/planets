@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     ).subscribe(title => {
       switch(title) {
         case 'Profile':
-          console.log('Profile');
+          this.router.navigate(['/profile']);
           break;
         case 'Logout':
           this.auth.logout();
