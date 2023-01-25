@@ -34,8 +34,6 @@ public class CrewsService: ICrewsService {
   }
 
   public async Task Create(Crew crew) {
-    // if(db.Planets.Any(e => e.Name == planet.Name))
-    //   throw new ApplicationException();
     Crew newCrew = new Crew{
       CrewName = crew.CrewName
     };
@@ -52,10 +50,19 @@ public class CrewsService: ICrewsService {
   }
 
   public async Task Update(int id, Crew newCrew) {
-    Crew crew = await FindOne(id);
+    var crew = await db.Crews.FindAsync(id);
 
     crew.CrewName = newCrew.CrewName;
     crew.CrewMembers = newCrew.CrewMembers;
+
+    // if(!crew.CrewMembers.Any())
+    //   crew.CrewMembers = newCrew.CrewMembers;
+    // else {
+    //   newCrew.CrewMembers.ForEach(e => {
+    //     db.CrewMembers.Attach(e);
+    //     crew.CrewMembers.Add(e);
+    //   });
+    // }
 
     db.Crews.Update(crew);
     await db.SaveChangesAsync();
