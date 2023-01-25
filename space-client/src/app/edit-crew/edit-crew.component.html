@@ -5,7 +5,7 @@
         <!-- {{ planet?.name }} -->
 
         <label style="font-size: 25px;"><b>Crew</b></label><br><br>
-        <input nbInput fullWidth name="crewForm" class="input-margin" placeholder="Planet Name"
+        <input nbInput fullWidth name="crewForm" class="input-margin" placeholder="Crew Name"
          formControlName="crewName"
          [status]="((crewName?.invalid && crewName?.touched) || crewName?.dirty) && crewName?.invalid ? 'danger' : 'basic'"/>
         <div *ngIf="(crewName?.invalid && crewName?.touched) || crewName?.dirty">

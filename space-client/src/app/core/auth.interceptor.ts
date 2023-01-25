@@ -13,7 +13,6 @@ export class AuthInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(this.auth.token);
     req = req.clone({
       setHeaders: {
         'Content-Type' : 'application/json; charset=utf-8',

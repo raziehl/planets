@@ -19,6 +19,7 @@ dotnet-ef 7.0.2
 
 ## Start Crews API
 
+http://localhost:3001
 ```bash
 cd crews-api/
 source .env
@@ -27,6 +28,7 @@ dotnet run
 
 ## Start Planets API
 
+http://localhost:3002
 ```bash
 cd planets-api/
 source .env
@@ -36,6 +38,7 @@ dotnet run
 
 ## Start Gateway API
 
+http://localhost:3000
 ```bash
 cd space-client
 npm ci
@@ -44,6 +47,8 @@ npm run start
 
 
 ## Start Space Client
+
+http://localhost:4200
 
 ```bash
 cd space-client/
