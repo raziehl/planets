@@ -9,6 +9,7 @@ export class Expedition {
   planetId: number;
   planet: Planet;
   status: PlanetStatus;
+  expeditionDate: number;
 
   constructor(expedition: Expedition) {
     this.id = expedition.id;
@@ -17,5 +18,6 @@ export class Expedition {
     this.planetId = expedition.planetId;
     this.planet = expedition.planet;
     this.status = expedition.status;
+    this.expeditionDate = expedition.expeditionDate;
   }
 }

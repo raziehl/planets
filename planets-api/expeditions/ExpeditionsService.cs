@@ -37,7 +37,8 @@ public class ExpeditionsService: IExpeditionsService {
         CrewId = crew.Id,
         Planet = planet,
         PlanetId = planet.Id,
-        Status = expedition.Status
+        Status = expedition.Status,
+        ExpeditionDate = DateTime.Now
       };
 
       await db.Expeditions.AddAsync(newExpedition);
