@@ -1,6 +1,6 @@
 <nb-layout>
 
-  <nb-layout-header *ngIf="!breakpoint.isHandset" fixed class="display: flex">
+  <nb-layout-header *ngIf="!breakpoint.isHandset && auth.isLoggedIn()" fixed class="display: flex">
   <!-- Insert header here -->
     <!-- <nb-card>
       <nb-menu [items]="items">
