@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 namespace planets_api.Controllers;
 
 [ApiController]
@@ -39,6 +40,7 @@ public class CrewMembersController : ControllerBase
 
   [HttpPost]
   [Consumes("application/json")]
+  [Authorize]
   public async Task<IActionResult> Create(CrewMember_CreationDto createMemberDTO) {
     try {
       await _crewMembersService.Create(createMemberDTO);
@@ -51,6 +53,7 @@ public class CrewMembersController : ControllerBase
 
   [HttpPut("{id}")]
   [Consumes("application/json")]
+  [Authorize]
   public async Task<IActionResult> Update(int id, CrewMember_UpdateDto updateMemberDTO) {
     try {
       await _crewMembersService.Update(id, updateMemberDTO);
@@ -62,6 +65,7 @@ public class CrewMembersController : ControllerBase
   }
 
   [HttpDelete("{id}")]
+  [Authorize]
   public async Task<IActionResult> Delete(int id) {
     try {
       await _crewMembersService.Delete(id);

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using common.models;
+using Microsoft.AspNetCore.Authorization;
 namespace planets_api.Controllers;
 
 [ApiController]
@@ -39,6 +40,7 @@ public class CrewsController : ControllerBase
   }
 
   [HttpPost]
+  [Authorize]
   public async Task<IActionResult> Create(Crew crew) {
     try {
       await _crewsService.Create(crew);
@@ -50,6 +52,7 @@ public class CrewsController : ControllerBase
   }
 
   [HttpPut("{id}")]
+  [Authorize]
   public async Task<IActionResult> Update(int id, Crew crew) {
     try {
       await _crewsService.Update(id, crew);
@@ -61,6 +64,7 @@ public class CrewsController : ControllerBase
   }
 
   [HttpDelete("{id}")]
+  [Authorize]
   public async Task<IActionResult> Delete(int id) {
     try {
       await _crewsService.Delete(id);
