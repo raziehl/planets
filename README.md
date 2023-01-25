@@ -82,3 +82,12 @@ The Angular frontend client of the system.
 ### Database
 
 The database system chosen is SQLite for demonstration purposes.
+
+
+### Backlog
+
+- Specify Authentication Scheme on Planets API
+- Further secure APIs
+- Restrict Write operations to CrewMembers that have the Rank of Captain
+- Pagination
+- Handle JWT_TOKEN expiration
