@@ -31,7 +31,7 @@ public class PlanetsService: IPlanetsService {
 
     if(planet != null) {
       return db.Expeditions
-            .OrderBy(e => e.ExpeditionDate)
+            .OrderByDescending(e => e.ExpeditionDate)
             .Where(e => e.PlanetId == planet.Id)
             .First();
     } else {

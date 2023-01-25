@@ -19,9 +19,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {
-    this.expeditions().then(console.log)
-  }
+  ) {}
 
   async login(loginCreds: { email: string, password: string }) {
     try {
@@ -85,6 +83,14 @@ export class HttpService {
       return await lastValueFrom(this.http.get<Planet[]>(`${env.gatewayApiUrl}/planets_gateway/planets`));
     } catch(err) {
       console.error(err);
+      throw err;
+    }
+  }
+
+  async planetStatus(planet: Planet) {
+    try {
+      return await lastValueFrom(this.http.get<Expedition>(`${env.gatewayApiUrl}/planets_gateway/planets/status/${planet.id}`));
+    } catch(err) {
       throw err;
     }
   }

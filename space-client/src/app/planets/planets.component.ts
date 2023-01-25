@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { Planet } from 'src/models/planet.model';
+import { Planet, PlanetStatus } from 'src/models/planet.model';
 import { BreakpointService } from '../core/breakpoint.service';
 import { HttpService } from '../core/http.service';
 import { EditPlanetComponent } from '../edit-planet/edit-planet.component';
@@ -15,7 +15,7 @@ export class PlanetsComponent implements OnInit{
   planets: Planet[] = [];
 
   constructor(
-    private http: HttpService,
+    public http: HttpService,
     private toastr: NbToastrService,
     private dialog: NbDialogService,
     public breakpoint: BreakpointService
@@ -28,6 +28,14 @@ export class PlanetsComponent implements OnInit{
   async getPlanets() {
     try {
       this.planets = await this.http.planets();
+
+      this.planets.map(async e => {
+        try {
+          e.status = (await this.http.planetStatus(e)).status;
+        } catch(err) {
+          e.status = PlanetStatus.TODO;
+        }
+      })
     } catch(err) {
       this.toastr.danger(err);
     }
