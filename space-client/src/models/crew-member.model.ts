@@ -20,6 +20,7 @@ export enum Role {
 
 export class CrewMember {
   id: number;
+  email: string;
   name: string;
   rank: Rank;
   species: Species;
@@ -27,6 +28,7 @@ export class CrewMember {
 
   constructor(member: CrewMember) {
     this.id = member.id;
+    this.email = member.email;
     this.name = member.name;
     this.rank = member.rank;
     this.species = member.species;
