@@ -10,6 +10,13 @@ determine whether it is suitable for human life or not. The human captain can us
 application in order to communicate the status of the expedition to the other exploring
 teams, so that they do not visit the same planet again.
 
+
+#### Login Credentials
+```
+email: asd@def.com
+pwd: defiance
+```
+
 ## Prerequisites
 
 node v14.20
