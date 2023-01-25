@@ -11,6 +11,7 @@
         <div *ngIf="(crewName?.invalid && crewName?.touched) || crewName?.dirty">
           <small *ngIf="(crewName?.errors || {})['required']" class="text-danger">Crew name is required</small>
         </div>
+        <input nbInput fullWidth name="crewForm" class="input-margin" placeholder="Shuttle Name" formControlName="shuttleName"/>
         <br>
 
         <div style="overflow-y: scroll; width: 500px; height: 200px; display: flex">
