@@ -46,7 +46,7 @@ export class PlanetsComponent implements OnInit{
     this.dialog.open(EditExpeditionComponent, {
       autoFocus: false,
       context: {
-        
+        planet: planet
       }
     });
   }

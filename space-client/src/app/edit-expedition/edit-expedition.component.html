@@ -1,7 +1,11 @@
 <div class="container">
   <nb-card>
     <nb-card-body>
-      ASDDEF
+      Expedition
+        <nb-select placeholder="Select Showcase" [(selected)]="status" fullWidth>
+          <nb-option *ngFor="let option of planetStatusOptions" [value]="option.value">{{ option.label }}</nb-option>
+        </nb-select>
+        <button nbButton fullWidth (click)="uploadExpedition()">Upload Expedition</button>
     </nb-card-body>
   </nb-card>
 </div>

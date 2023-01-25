@@ -38,6 +38,14 @@ export class HttpService {
     }
   }
 
+  async createExpedition(expedition: Expedition) {
+    try {
+      return await lastValueFrom(this.http.post<{ message: string }>(`${env.gatewayApiUrl}/planets_gateway/expeditions`, expedition));      
+    } catch(err) {
+      throw err;
+    }
+  }
+
   async crews() {
     try {
       return await lastValueFrom(this.http.get<Crew[]>(`${env.gatewayApiUrl}/crews_gateway/crews`));

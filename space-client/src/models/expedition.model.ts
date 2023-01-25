@@ -3,13 +3,13 @@ import { Crew } from "./crew.model";
 import { Planet, PlanetStatus } from "./planet.model";
 
 export class Expedition {
-  id: number;
+  id?: number;
   crewId: number;
   crew: Crew;
   planetId: number;
   planet: Planet;
   status: PlanetStatus;
-  expeditionDate: number;
+  expeditionDate: Date;
 
   constructor(expedition: Expedition) {
     this.id = expedition.id;
