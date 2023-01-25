@@ -1,4 +1,4 @@
-// ReverseProxyApplication/ReverseProxyMiddleware.cs
+using System.Net.Http.Headers;
 
 public class ReverseProxyMiddleware
 {
@@ -50,6 +50,8 @@ public class ReverseProxyMiddleware
     {
       var targetRequestMessage = CreateTargetMessage(context, targetUri);
 
+      Console.WriteLine(targetRequestMessage.Headers.Authorization);
+
       using (var responseMessage = await _httpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted))
       {
         context.Response.StatusCode = (int)responseMessage.StatusCode;
@@ -69,6 +71,11 @@ public class ReverseProxyMiddleware
     requestMessage.RequestUri = targetUri;
     requestMessage.Headers.Host = targetUri.Host;
     requestMessage.Method = GetMethod(context.Request.Method);
+
+    if(!string.IsNullOrEmpty(context.Request.Headers.Authorization)) {
+      var jwtToken = ((string)context.Request.Headers.Authorization).Split(' ')[1];
+      requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", jwtToken);
+    }
 
     return requestMessage;
   }

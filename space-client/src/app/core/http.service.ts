@@ -19,7 +19,17 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {}
+  ) {
+    this.checkAuth().then(console.log);
+  }
+
+  async checkAuth() {
+    try {
+      return await lastValueFrom(this.http.get(`${env.gatewayApiUrl}/crews_gateway/auth_check`));
+    } catch(err) {
+      throw err;
+    }
+  }
 
   async login(loginCreds: { email: string, password: string }) {
     try {

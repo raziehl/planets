@@ -10,12 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { CrewsComponent } from './crews/crews.component';
 import { PlanetsComponent } from './planets/planets.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EditPlanetComponent } from './edit-planet/edit-planet.component';
 import { EditCrewComponent } from './edit-crew/edit-crew.component';
 import { CrewMembersComponent } from './crew-members/crew-members.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditExpeditionComponent } from './edit-expedition/edit-expedition.component';
+import { AuthInterceptor } from './core/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,11 @@ import { EditExpeditionComponent } from './edit-expedition/edit-expedition.compo
     }),
     NbDialogModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
