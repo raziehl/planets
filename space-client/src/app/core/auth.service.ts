@@ -13,7 +13,7 @@ export class AuthService {
     try {
       this.user = new CrewMember(JSON.parse(localStorage.getItem('USER_DATA') as string));
     } catch(err) {
-      
+      this.logout();
     }
   }
 

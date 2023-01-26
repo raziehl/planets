@@ -19,9 +19,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient
-  ) {
-    this.checkAuth().then(console.log);
-  }
+  ) {}
 
   async checkAuth() {
     try {

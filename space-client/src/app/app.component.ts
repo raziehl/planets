@@ -4,6 +4,7 @@ import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs';
 import { AuthService } from './core/auth.service';
 import { BreakpointService } from './core/breakpoint.service';
+import { HttpService } from './core/http.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
   constructor(
     public breakpoint: BreakpointService,
     public auth: AuthService,
+    private http: HttpService,
     public router: Router,
     private nbMenuService: NbMenuService
   ) {}
@@ -41,6 +43,8 @@ export class AppComponent implements OnInit {
           break;
       }
     });
+    
+    this.http.checkAuth().then().catch(() => this.auth.logout());
   }
 
   updateSingleSelectGroupValue(value: any): void {
