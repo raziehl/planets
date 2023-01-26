@@ -46,21 +46,21 @@ dotnet run
 ## Start Gateway API
 
 http://localhost:3000
-```bash
-cd space-client
-npm ci
-npm run start
-```
 
+```bash
+cd gateway-api/
+source .env
+dotnet run
+```
 
 ## Start Space Client
 
 http://localhost:4200
 
 ```bash
-cd space-client/
-source .env
-dotnet run
+cd space-client
+npm ci
+npm run start
 ```
 
 ## Test curls
