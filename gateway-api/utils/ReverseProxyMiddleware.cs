@@ -49,9 +49,6 @@ public class ReverseProxyMiddleware
     if (targetUri != null)
     {
       var targetRequestMessage = CreateTargetMessage(context, targetUri);
-
-      Console.WriteLine(targetRequestMessage.Headers.Authorization);
-
       using (var responseMessage = await _httpClient.SendAsync(targetRequestMessage, HttpCompletionOption.ResponseHeadersRead, context.RequestAborted))
       {
         context.Response.StatusCode = (int)responseMessage.StatusCode;

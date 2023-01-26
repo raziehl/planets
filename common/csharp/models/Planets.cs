@@ -12,6 +12,7 @@ public class Planet {
   public String Name { get; set; }
   public String Description { get; set; }
   // Planet.Status is now deprecated as the status is now tracked as the newest Expedition.Status
+  [ObsoleteAttribute("Planet.Status is obsolete. Planet status is now determined as the latest Expedition.Status", false)]
   public String Status {
     get => _status;
     set => _status = ValidateStatus(value);
