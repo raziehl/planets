@@ -66,9 +66,12 @@ npm run start
 ## Test curls
 
 ```bash
-curl -X POST localhost:3001/login -d '{ "email": "example@email.com", "password": "examplepassword" }' -H 'Content-Type: application/json' -v
 
-curl localhost:3001/auth_check -H "Authorization: Bearer {token}" -v
+curl -X POST localhost:3000/crews_gateway/login -d '{ "email": "example@email.com", "password": "examplepassword" }' -H 'Content-Type: application/json' -v
+
+curl -X POST localhost:3000/crews_gateway/crew_members -d '{ "email": "examplepassword", "name": "Example Name", "password": "examplepassword" }' -H 'Content-Type: application/json' -v -H 'Authorization: Bearer {token}'
+
+curl localhost:3000/crews_gateway/auth_check -H "Authorization: Bearer {token}" -v
 ```
 
 ## Descriptions
