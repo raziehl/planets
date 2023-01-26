@@ -98,6 +98,10 @@ The Angular frontend client of the system.
 
 The database system chosen is SQLite for demonstration purposes.
 
+### Project Structure
+
+THe entire project is structured as a monorepo. The /common dir is meant to hold common assets, models, DTOs etc. that can be shared between microservices of the same language. Currently only the dotnet part of the project that has shareable models & DTOs. Compilation of these files is facilitated by symlinks from each service to /common (ex.: crews-api/common -> ../common).
+
 
 ### Backlog
 
